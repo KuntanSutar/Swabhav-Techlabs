@@ -1,9 +1,11 @@
 Day 1: Hello
 Day 2: Good Bye
 Day 3: Howdy
+Manually taking backups of all these versions will be inpractical.
+
 Process of keeping track of records is known as git/ Version Control/ Source Control.
 
-First you need to create your own directory, in which you will save your codes.
+First you need to create your own directory /d/KUNTAN/SwabhavRepository, in which you will save your codes.
 > git init - 
 Creates git directory i.e .git (hidden) folder
 
