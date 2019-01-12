@@ -3,11 +3,14 @@ Day 2: Good Bye
 Day 3: Howdy
 Manually taking backups of all these versions will be inpractical.
 
-Process of keeping track of records is known as git/ Version Control/ Source Control.
+With the help of git changes made to files are tracked. 
+This is known as Version Control or Source Control.
 
+First you need to install git for windows: (Git-2.20.1-64-bit) At 11/1/2019
 First you need to create your own directory /d/KUNTAN/SwabhavRepository, in which you will save your codes.
+Right click & choose "Git Bash Here"
 > git init - 
-Creates git directory i.e .git (hidden) folder
+Initializes empty git repository in respective folder i.e .git (hidden) folder
 
 master is name given to your current working directory i.e /d/KUNTAN/SwabhavRepository 
 
