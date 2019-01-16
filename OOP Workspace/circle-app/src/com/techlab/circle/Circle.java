@@ -17,6 +17,10 @@ public class Circle {
 			radius=newRadius;
 		}
 	}
+	public float getRadius()
+	{
+		return radius;
+	}
 	public float calcArea()
 	{
 		area = PIE*radius*radius;
