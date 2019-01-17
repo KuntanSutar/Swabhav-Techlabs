@@ -18,7 +18,7 @@ public class Rectangle {
 		
 		if(newBGColor.equalsIgnoreCase("Red")||newBGColor.equalsIgnoreCase("Green")||newBGColor.equalsIgnoreCase("Blue"))
 		{
-			this.bgColor=newBGColor.toUpperCase();
+			bgColor=newBGColor.toUpperCase();
 		}
 	}
 
