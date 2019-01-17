@@ -56,10 +56,7 @@ For adding code files into origin:
 > git push origin master
 Small pop-up will come up asking for Username & Password of your github account.
 
-
-
-
-
+Every class in java by default contains "this" variable. It is hidden reference variable pointing to corresponding class's object. 
 
 
 

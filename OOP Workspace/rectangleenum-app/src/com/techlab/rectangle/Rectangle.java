@@ -27,7 +27,6 @@ public class Rectangle {
 		return width;
 	}
 	
-	
 	public int calcArea()
 	{
 		return heigth*width;
