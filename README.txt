@@ -1,3 +1,5 @@
+10/1/19
+
 Day 1: Hello
 Day 2: Good Bye
 Day 3: Howdy
@@ -55,6 +57,8 @@ url is url of your github directory
 For adding code files into origin:
 > git push origin master
 Small pop-up will come up asking for Username & Password of your github account.
+
+17/1/19
 
 Every class in java by default contains "this" variable. It is hidden reference variable pointing to corresponding class's object. 
 

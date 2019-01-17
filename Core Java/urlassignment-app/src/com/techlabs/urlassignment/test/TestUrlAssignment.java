@@ -1,10 +1,9 @@
-package com.techlabs.urlassignment;
+package com.techlabs.urlassignment.test;
 
 public class TestUrlAssignment {
 
 	public static void main(String[] args) {
 		String url = "http://www.swabhavtechlabs.com?developer=Kuntan&client=Aurionpro";
-		String domain;
 		String developer = "";
 		String client = "";
 
@@ -28,5 +27,4 @@ public class TestUrlAssignment {
 		System.out.println("Developer : " + developer);
 		System.out.println("Client : " + client);
 	}
-
 }
