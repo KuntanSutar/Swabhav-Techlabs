@@ -61,6 +61,9 @@ Small pop-up will come up asking for Username & Password of your github account.
 17/1/19
 
 Every class in java by default contains "this" variable. It is hidden reference variable pointing to corresponding class's object. 
+While resolving method calls on object, "this" reference variable is used.
+
+
 
 
 

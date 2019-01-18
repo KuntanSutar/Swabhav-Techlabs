@@ -1,6 +1,7 @@
 package com.techlab.person;
 
 public class Person {
+	
 	private String name;
 	private int age;
 	private double height;
@@ -41,14 +42,15 @@ public class Person {
 		weight=weight+(300/weight);
 		height=height+(200/height);
 	}
-	public double calculateBMI()
+	public double calcBMI()
 	{
 		this.bmi = weight/(height*height);
 		return bmi;
 	}
 
 	public String getCatagory() {
-		double bmi=this.calculateBMI();
+		
+		double bmi=this.calcBMI();
 		if(bmi<18.5)
 		{
 			return "Underweight";

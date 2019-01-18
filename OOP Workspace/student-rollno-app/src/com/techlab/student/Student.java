@@ -1,6 +1,7 @@
 package com.techlab.student;
 
 public class Student {
+
 	private String fname;
 	private String lname;
 	private double cgpa;
@@ -8,17 +9,21 @@ public class Student {
 	private static int rollNoCount;
 
 	public Student(String fname, String lname, double cgpa) {
-		System.out.println("Inside Constructor");
+
+		System.out.println(fname + " Inside Constructor ");
 		this.fname = fname;
 		this.lname = lname;
 		this.cgpa = cgpa;
 		this.rollno = rollNoCount;
 		rollNoCount++;
+
 	}
 
 	static {
-		rollNoCount = 1001;
+
 		System.out.println("Inside Static Block");
+		rollNoCount = 1001;
+
 	}
 
 	public String getFname() {
@@ -40,4 +45,5 @@ public class Student {
 	public int getRollNo() {
 		return rollno;
 	}
+
 }
