@@ -1,4 +1,4 @@
-package com.techlab.bookmarks;
+package com.techlab.bookmarks.business;
 
 public class Bookmark {
 
@@ -7,12 +7,6 @@ public class Bookmark {
 	
 	private String name;
 	private String url;
-	
-//	public Bookmark(String newName, String newUrl)
-//	{
-//		name=newName;
-//		url=newUrl;
-//	}
 	
 	public String getName() {
 		return name;
