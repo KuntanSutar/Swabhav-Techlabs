@@ -17,29 +17,25 @@ public class BookmarkMenu {
 		Bookmark bookmark1 = new Bookmark();
 		boolean flag=true;
 		
-		while(flag) {
-			
+		while(flag)
+		{	
 			switch(choice)
 			{
 			case "ChoiceOptions.ADD.toString()": addUrl(bookmark1, bookmarkManager);
 			
 			case "ChoiceOptions.EXPORT.toString()": exportBookmark(bookmarkManager);
 			
-			case "ChoiceOptions.EXIT.toString()" : exitBookmark();
-
 			case "ChoiceOptions.IMPORT.toString()" : importBookmark(bookmarkManager);
+			
+			case "ChoiceOptions.EXIT.toString()" : flag=false; break;
 			}
 		}
-		
 		}
+		
 
 	private static void importBookmark(BookmarkManager bookmarkManager) throws Exception {
 		File importFile = new File(takeInput("Path of File to be imported"));
 		bookmarkManager.importBookmarks(importFile);
-	}
-
-	private static void exitBookmark() {
-		System.exit(0);
 	}
 
 	private static void exportBookmark(BookmarkManager bookmarkManager) throws Exception {
@@ -65,6 +61,6 @@ public class BookmarkMenu {
 
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter " + input + " : ");
-		return sc.next();
+		return sc.nextLine();
 	}
 }

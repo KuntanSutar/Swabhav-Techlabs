@@ -10,9 +10,9 @@ public class TestEmployee {
 	public static void main(String[] args) {
 
 		TreeSet ts = new TreeSet(new MyComparator());
-		ts.add(new Employee(1, "KUNTAN"));
+		ts.add(new Employee(1, "SHRINIVAS"));
 		ts.add(new Employee(2, "PRASAD"));
-		ts.add(new Employee(3, "KIRAN"));
+		ts.add(new Employee(3, "RAM"));
 
 		Iterator itr = ts.iterator();
 		while (itr.hasNext()) {

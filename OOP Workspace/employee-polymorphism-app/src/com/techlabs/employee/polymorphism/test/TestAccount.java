@@ -14,7 +14,7 @@ public class TestAccount {
 		Developer developer1 = new Developer(3, "Prasad", "Developer");
 		printPaySlip(manager1);
 		printPaySlip(accountant1);
-		
+		printPaySlip(developer1);
 	}
 
 	private static void printPaySlip(Employee emp) {

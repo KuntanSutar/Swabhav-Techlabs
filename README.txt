@@ -77,6 +77,23 @@ Object Calisthenics: At least follow 1, 2, 6
 8) No classes with more than two instance variables.
 9) No getters or setters (properties).
 
+22/1/19
+Comparable vs Comparator :
+Comparable : Default Sorting Order, lang package, compareTo() method, String & All Wrapper Class have already implemented
+Comparator : Customized Sorting Order, util package, compare() & equals() methods
+
+Class is Entity (data, methods)
+Interface exposes behaviour -> Hence, each data element, method is public.
+Interfaces are polymorphic
+Used to standardize the behaviour of likely classes.
+Is is way to provide abstraction.
+It is used to provide loosely coupled architecture.
+It is used to switch implementation 
+
+Assignment : OAD chapter (Dog Door) 2 assignment, Unit Test, TDD
+
+
+
 
 
 
