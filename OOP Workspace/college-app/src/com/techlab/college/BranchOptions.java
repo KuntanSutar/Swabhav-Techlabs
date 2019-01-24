@@ -1,5 +1,5 @@
 package com.techlab.college;
 
-public enum Branch {
+public enum BranchOptions {
 	SCIENCE, COMMERCE, ARTS
 }

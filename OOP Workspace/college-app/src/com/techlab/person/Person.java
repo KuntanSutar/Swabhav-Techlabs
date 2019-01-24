@@ -20,7 +20,7 @@ public class Person {
 		return address;
 	}
 
-	public String getDob() {
+	public String getDOB() {
 		return dob;
 	}
 

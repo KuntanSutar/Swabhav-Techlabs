@@ -1,16 +1,16 @@
 package com.techlab.person;
 
-import com.techlab.college.Branch;
+import com.techlab.college.BranchOptions;
 import com.techlab.college.College;
 
 public class Student extends Person {
 
 	private String name;
 	private College college;
-	private Branch branch;
+	private BranchOptions branch;
 
 	public Student(int newID, String newAddress, String newDOB, String newName, 
-			College newCollege, Branch newBranch) {
+			College newCollege, BranchOptions newBranch) {
 		super(newID, newAddress, newDOB);
 		name = newName;
 		college = newCollege;
@@ -21,7 +21,7 @@ public class Student extends Person {
 		return name;
 	}
 
-	public Branch getBranch() {
+	public BranchOptions getBranch() {
 		return branch;
 	}
 	

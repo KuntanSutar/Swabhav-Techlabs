@@ -9,8 +9,8 @@ import com.techlab.person.Student;
 public class College {
 
 	private String name;
-	ArrayList<Student> studentList = new ArrayList();
-	ArrayList<Professor> professorList = new ArrayList();
+	private ArrayList<Student> studentList = new ArrayList();
+	private ArrayList<Professor> professorList = new ArrayList();
 	
 	public College(String newName) {
 		name=newName;
