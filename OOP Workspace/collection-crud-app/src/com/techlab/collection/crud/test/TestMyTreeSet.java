@@ -4,7 +4,7 @@ import java.util.*;
 
 import com.techlab.collection.crud.set.TreeSetCRUD;
 
-public class TestTreeSetCRUD {
+public class TestMyTreeSet {
 
 	public static void main(String[] args) {
 
