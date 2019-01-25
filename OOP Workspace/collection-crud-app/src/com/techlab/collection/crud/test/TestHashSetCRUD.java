@@ -2,13 +2,13 @@ package com.techlab.collection.crud.test;
 
 import java.util.*;
 
-import com.techlab.collection.crud.MyHashSet;
+import com.techlab.collection.crud.set.HashSetCRUD;
 
-public class TestMyHashSet {
+public class TestHashSetCRUD {
 
 	public static void main(String[] args) {
 		
-		MyHashSet myHashSet = new MyHashSet();
+		HashSetCRUD myHashSet = new HashSetCRUD();
 		HashSet hashset = new HashSet();
 		myHashSet.create(hashset, 10);
 		myHashSet.create(hashset, 20);
@@ -17,7 +17,7 @@ public class TestMyHashSet {
 		myHashSet.update(hashset, 30);
 		myHashSet.read(hashset);
 		
-		myHashSet.delete(hashset);
+		myHashSet.delete(hashset, 30);
 		myHashSet.read(hashset);
 	}
 

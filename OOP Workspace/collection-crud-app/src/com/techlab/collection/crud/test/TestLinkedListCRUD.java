@@ -2,13 +2,13 @@ package com.techlab.collection.crud.test;
 
 import java.util.*;
 
-import com.techlab.collection.crud.MyLinkedList;
+import com.techlab.collection.crud.list.LinkedListCRUD;
 
-public class TestMyLinkedList {
+public class TestLinkedListCRUD {
 
 	public static void main(String[] args) {
 
-		MyLinkedList myLinkedList = new MyLinkedList();
+		LinkedListCRUD myLinkedList = new LinkedListCRUD();
 		LinkedList linkedlist = new LinkedList();
 		myLinkedList.create(linkedlist, 10);
 		myLinkedList.create(linkedlist, 20);

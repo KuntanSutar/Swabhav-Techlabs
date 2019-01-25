@@ -1,8 +1,8 @@
-package com.techlab.collection.crud;
+package com.techlab.collection.crud.list;
 
 import java.util.*;
 
-public class MyLinkedList {
+public class LinkedListCRUD {
 
 	public void create(LinkedList newLinkedList, int newNumber) {
 		newLinkedList.add(newNumber);

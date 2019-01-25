@@ -2,13 +2,13 @@ package com.techlab.collection.crud.test;
 
 import java.util.*;
 
-import com.techlab.collection.crud.*;
+import com.techlab.collection.crud.set.LinkedHashSetCRUD;
 
-public class TestMyLinkedHashSet {
+public class TestLinkedHashSetCRUD {
 
 	public static void main(String[] args) {
 
-		MyLinkedHashSet mylinkedhashset = new MyLinkedHashSet();
+		LinkedHashSetCRUD mylinkedhashset = new LinkedHashSetCRUD();
 		LinkedHashSet linkedhashset = new LinkedHashSet();
 		mylinkedhashset.create(linkedhashset, 10);
 		mylinkedhashset.create(linkedhashset, 20);
@@ -17,7 +17,7 @@ public class TestMyLinkedHashSet {
 		mylinkedhashset.update(linkedhashset, 30);
 		mylinkedhashset.read(linkedhashset);
 		
-		mylinkedhashset.delete(linkedhashset);
+		mylinkedhashset.delete(linkedhashset, 30);
 		mylinkedhashset.read(linkedhashset);
 	}
 

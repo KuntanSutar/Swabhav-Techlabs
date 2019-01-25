@@ -1,12 +1,14 @@
 package com.techlab.person;
 
+import java.util.Date;
+
 public class Person {
 
 	private int id;
 	private String address;
-	private String dob;
-	
-	public Person(int newID, String newAddress, String newDOB) {
+	private Date dob;
+
+	public Person(int newID, String newAddress, Date newDOB) {
 		id = newID;
 		address = newAddress;
 		dob = newDOB;
@@ -20,7 +22,7 @@ public class Person {
 		return address;
 	}
 
-	public String getDOB() {
+	public Date getDOB() {
 		return dob;
 	}
 

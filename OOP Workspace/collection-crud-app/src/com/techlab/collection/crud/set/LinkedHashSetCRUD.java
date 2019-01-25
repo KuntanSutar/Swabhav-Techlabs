@@ -1,8 +1,8 @@
-package com.techlab.collection.crud;
+package com.techlab.collection.crud.set;
 
 import java.util.*;
 
-public class MyLinkedHashSet {
+public class LinkedHashSetCRUD {
 
 	public void create(LinkedHashSet newLinkedHashSet, int newNumber) {
 		newLinkedHashSet.add(newNumber);
@@ -16,7 +16,7 @@ public class MyLinkedHashSet {
 		newLinkedHashSet.add(newElement);
 	}
 	
-	public void delete(LinkedHashSet newLinkedHashSet) {
-		newLinkedHashSet.clear();
+	public void delete(LinkedHashSet newLinkedHashSet, Object newElement) {
+		newLinkedHashSet.remove(newElement);
 	}
 }

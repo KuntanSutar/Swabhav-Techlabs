@@ -2,19 +2,19 @@ package com.techlab.collection.crud.test;
 
 import java.util.*;
 
-import com.techlab.collection.crud.MyTreeMap;
+import com.techlab.collection.crud.map.TreeMapCRUD;
 
-public class TestMyTreeMap {
+public class TestTreeMapCRUD {
 
 	public static void main(String[] args) {
 
-		MyTreeMap mytreemap = new MyTreeMap();
+		TreeMapCRUD mytreemap = new TreeMapCRUD();
 		TreeMap treemap = new TreeMap();
 		mytreemap.create(treemap, 1, "Kuntan");
 		mytreemap.create(treemap, 2, "Prasad");
 		mytreemap.read(treemap);
 		
-		mytreemap.update(treemap, 3, "Kiran");
+		mytreemap.update(treemap, 2, "Kiran");
 		mytreemap.read(treemap);
 		
 		mytreemap.delete(treemap, 2);

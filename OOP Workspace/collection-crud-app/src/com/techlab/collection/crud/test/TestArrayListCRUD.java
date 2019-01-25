@@ -2,13 +2,13 @@ package com.techlab.collection.crud.test;
 
 import java.util.*;
 
-import com.techlab.collection.crud.MyArrayList;
+import com.techlab.collection.crud.list.ArrayListCRUD;
 
-public class TestMyArrayList {
+public class TestArrayListCRUD {
 
 	public static void main(String[] args) {
 		
-		MyArrayList myArrayList = new MyArrayList();
+		ArrayListCRUD myArrayList = new ArrayListCRUD();
 		ArrayList arraylist = new ArrayList();
 		myArrayList.create(arraylist, 10);
 		myArrayList.create(arraylist, 20);

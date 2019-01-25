@@ -1,8 +1,8 @@
-package com.techlab.collection.crud;
+package com.techlab.collection.crud.map;
 
 import java.util.*;
 
-public class MyLinkedHashMap {
+public class LinkedHashMapCRUD {
 
 	public void create(LinkedHashMap newLinkedHashMap, Object newKey, Object newValue) {
 		newLinkedHashMap.put(newKey, newValue);
@@ -13,7 +13,7 @@ public class MyLinkedHashMap {
 	}
 	
 	public void update(LinkedHashMap newLinkedHashMap, Object newKey, Object newValue) {
-		newLinkedHashMap.put(newKey, newValue);
+		newLinkedHashMap.replace(newKey, newValue);
 	}
 	
 	public void delete(LinkedHashMap newLinkedHashMap, Object newKey) {

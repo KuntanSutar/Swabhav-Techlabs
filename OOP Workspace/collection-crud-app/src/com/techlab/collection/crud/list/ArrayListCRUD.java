@@ -1,8 +1,8 @@
-package com.techlab.collection.crud;
+package com.techlab.collection.crud.list;
 
 import java.util.*;
 
-public class MyArrayList {
+public class ArrayListCRUD {
 
 	public void create(ArrayList newArrayList, int newNumber) {
 		newArrayList.add(newNumber);
