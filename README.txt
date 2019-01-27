@@ -90,7 +90,8 @@ Is is way to provide abstraction.
 It is used to provide loosely coupled architecture.
 It is used to switch implementation 
 
-Assignment : OAD chapter (Dog Door) 2 assignment, Unit Test, TDD
+Unit Test, TDD
+
 
 
 

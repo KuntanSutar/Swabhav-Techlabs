@@ -10,51 +10,72 @@ public class BookmarkMenu {
 	public static void main(String[] args) throws Exception {
 
 		System.out.println("Welcome to Bookmark App!");
-		System.out.println(
-				"Enter your choice: 1) Add URL 2) Display Bookmarks " + "3) Import Bookmarks 4) Export Bookmarks");
-		String choice = takeInput("Choice");
 		BookmarkManager bookmarkManager = new BookmarkManager();
 		Bookmark bookmark1 = new Bookmark();
-		boolean flag=true;
-		
-		while(flag)
-		{	
-			switch(choice)
-			{
-			case "ChoiceOptions.ADD.toString()": addUrl(bookmark1, bookmarkManager);
-			
-			case "ChoiceOptions.EXPORT.toString()": exportBookmark(bookmarkManager);
-			
-			case "ChoiceOptions.IMPORT.toString()" : importBookmark(bookmarkManager);
-			
-			case "ChoiceOptions.EXIT.toString()" : flag=false; break;
+
+		boolean flag = true;
+
+		while (flag) {
+
+			System.out.println("Enter your choice as follows :\n" 
+			        + "1) 'Add' for Adding URL \n"
+					+ "2) 'Export' for exporting Bookmarks \n" 
+			        + "3) 'Import' for importing Bookmarks \n"
+					+ "4) 'Display' for displaying Bookmarks on console \n"
+					+ "5) 'Launch' for launching Bookmark App \n" 
+					+ "6) 'Exit' for exiting Bookmark App");
+
+			String choice = takeInput("Choice");
+
+			switch (choice) {
+			case "Add":
+
+				String urlName = takeInput("URL Name");
+				String urlAddress = takeInput("URL Address");
+
+				bookmark1.setURLName(urlName);
+				bookmark1.setURLAddress(urlAddress);
+				bookmarkManager.addURL(bookmark1);
+				break;
+
+			case "Export":
+
+				String exportFileHere = takeInput("Path of File to save exported file");
+				String exportAs = takeInput("Name for Exported File");
+				String resultantPath = exportFileHere + "\\" + exportAs + ".html";
+
+				File exportFile = new File(resultantPath);
+				bookmarkManager.exportBookmarks(exportFile);
+				System.out.println("File exported successfully!");
+				break;
+
+			case "Import":
+
+				File importFile = new File(takeInput("Path of File to be imported along with name"));
+				bookmarkManager.importBookmarks(importFile);
+				System.out.println("File imported successfully!");
+				break;
+
+			case "Display":
+
+				bookmarkManager.displayBookmarks();
+				break;
+				
+			case "Launch":
+
+				bookmarkManager.launchBookmark();
+				break;
+
+			case "Exit":
+
+				flag = false;
+				break;
+
+			default:
+				System.out.println("Invalid Input! Read Instructions Carefully Again!");
+
 			}
 		}
-		}
-		
-
-	private static void importBookmark(BookmarkManager bookmarkManager) throws Exception {
-		File importFile = new File(takeInput("Path of File to be imported"));
-		bookmarkManager.importBookmarks(importFile);
-	}
-
-	private static void exportBookmark(BookmarkManager bookmarkManager) throws Exception {
-		
-		String exportAs = takeInput("Name for Exported File");
-		String exportFileHere = takeInput("Path of File to export");
-		String resultantPath = exportFileHere+"//"+exportAs;
-		File exportFile = new File(resultantPath);
-		bookmarkManager.exportBookmarks(exportFile);
-	}
-
-	private static void addUrl(Bookmark bookmark1, BookmarkManager bookmarkManager) throws Exception {
-		
-		String urlName = takeInput("URL Name");
-		String urlAddress = takeInput("URL Address");
-
-		bookmark1.setURLName(urlName);
-		bookmark1.setURLAddress(urlAddress);
-		bookmarkManager.addURL(bookmark1);
 	}
 
 	private static String takeInput(String input) {
