@@ -22,4 +22,15 @@ public class Inventory {
 		}
 		return null;
 	}
+	
+	public List<Guitar> searchMatchingGuitar(GuitarSpecs newGuitarSpecs) {
+		List<Guitar> matchingGuitars = new ArrayList();
+		for(Iterator iterator=list1.iterator(); iterator.hasNext(); ) {
+			Guitar guitar = (Guitar) iterator.next();
+			if(guitar.getGuitarSpecs().checkEquality(newGuitarSpecs)) {
+				matchingGuitars.add(guitar);
+			}
+		}
+		return matchingGuitars;
+	}
 }

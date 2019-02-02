@@ -8,17 +8,28 @@ import com.techlab.bookmark.business.Bookmark;
 public class BookmarkManager {
 
 	private static File bookmarkFile = new File("data\\Bookmarks.html");
+	private static File csvFile = new File("data\\BookmarksCSVFile.csv");
 
-	public void addURL(Bookmark bookmark) throws Exception {
+	public void addURLToHTML(Bookmark bookmark) throws Exception {
 
 		BufferedWriter bw = new BufferedWriter(new FileWriter(bookmarkFile, true));
 		bw.append("<a href=" + bookmark.getURLAddress() + ">" + bookmark.getURLName() + "</a><br>\n");
 		bw.close();
 
-		System.out.println("****** URl added successfully with name " + bookmark.getURLName() + " and address "
+		System.out.println("****** URl added successfully to HTML with name " + bookmark.getURLName() + " and address "
 				+ bookmark.getURLAddress() + " ******");
 	}
 
+	public void addURLToCSV(Bookmark bookmark) throws Exception {
+
+		BufferedWriter bw = new BufferedWriter(new FileWriter(csvFile, true));
+		String entry = bookmark.getURLName()+","+bookmark.getURLAddress();
+		bw.append(entry);
+		bw.close();
+		System.out.println("****** URl added successfully to CSV with name " + bookmark.getURLName() + " and address "
+				+ bookmark.getURLAddress() + " ******");
+	}
+	
 	public void exportBookmarks(File exportedFile) throws Exception {
 
 		InputStream is = new FileInputStream(bookmarkFile);

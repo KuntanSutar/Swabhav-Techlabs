@@ -41,7 +41,7 @@ public class TestCollege {
 		List<Student> studentList = college1.getStudentList();
 		printStudentDetails(studentList);
 		System.out.println("It has " + college1.getProfessorCount() + " professors");
-		System.out.println("Theirs details are as follows : ");
+		System.out.println("Their details are as follows : ");
 		List<Professor> professorList = college1.getProfessorList();
 		printProfessorDetails(professorList);
 	}

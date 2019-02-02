@@ -14,6 +14,9 @@ public class TestPerson {
 		printDetails(p2);
 
 		p1.eat();
+		p1.eat();
+		p1.eat();
+		p1.eat();
 		printDetails(p1);
 
 	}

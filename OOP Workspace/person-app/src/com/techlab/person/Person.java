@@ -39,12 +39,12 @@ public class Person {
 	}
 
 	public void workout() {
-		weight = weight - (300 / weight);
+		weight = (weight*97)/100;
 	}
 
 	public void eat() {
-		weight = weight + (300 / weight);
-		height = height + (200 / height);
+		weight = (weight*103)/100;
+		height = (height*102)/100;
 	}
 
 	public double calcBMI() {

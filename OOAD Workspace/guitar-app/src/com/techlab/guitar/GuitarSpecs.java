@@ -36,4 +36,23 @@ public class GuitarSpecs {
 	public Wood getTopWood() {
 		return topWood;
 	}
+	
+	public boolean checkEquality (GuitarSpecs newGuitarSpecs) {
+		if(builder!=newGuitarSpecs.getBuilder()) {
+			return false;
+		}
+		if(model!=newGuitarSpecs.getModel()) {
+			return false;
+		}
+		if(type!=newGuitarSpecs.getType()) {
+			return false;
+		}
+		if(backWood!=newGuitarSpecs.getBackWood()) {
+			return false;
+		}
+		if(topWood!=newGuitarSpecs.getTopWood()) {
+			return false;
+		}
+		return true;
+	}
 }

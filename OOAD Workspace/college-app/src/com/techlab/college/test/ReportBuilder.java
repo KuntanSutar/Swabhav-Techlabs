@@ -13,11 +13,10 @@ public class ReportBuilder {
 	public static void printReport(College college) throws Exception {
 
 		final SimpleDateFormat simpledateformat = new SimpleDateFormat("dd/mm/yyyy");
-		FileWriter fw = new FileWriter(
-				"D:\\KUNTAN\\SwabhavRepository\\OOP" + " " + "Workspace\\college-app\\data\\CollegeReport.html");
-		fw.write("<h1>College Name : " + college.getName() + "</h1>");
+		FileWriter fw = new FileWriter("data\\CollegeReport.html");
+		fw.write("<h1>" + college.getName() + " College Report </h1><br>");
 		fw.write("<p> It has " + college.getStudentCount() + " students</p>");
-		fw.write("<h2>Their details are as follows : </h2>");
+		fw.write("<h2>Their details are as follows : </h2>\n");
 
 		List<Student> studentList = college.getStudentList();
 		for (Student student : studentList) {

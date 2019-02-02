@@ -92,12 +92,20 @@ It is used to switch implementation
 
 Unit Test, TDD
 
+Design Pattern: Named solution to recurring problem during software development.
 
+Most common Design Pattern is Strategy Pattern. Swaps strategy at runtime.
 
+30/1/2019
+Implement DataService class using Enum.
+Cross cutting concerns in computing programming. How to avoid it?
+How to do double check locking with DataService!
 
+Oberver Pattern are high level call backs.
+source, publisher
+target, subscriber, observer, listeners
 
-
-
-
-
+Adapter Pattern:
+Adapter makes compatible 2 things which are not compatible with each other.
  
+javascript is dynamically typed language

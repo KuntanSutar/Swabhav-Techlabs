@@ -17,13 +17,10 @@ public class BookmarkMenu {
 
 		while (flag) {
 
-			System.out.println("Enter your choice as follows :\n" 
-			        + "1) 'Add' for Adding URL \n"
-					+ "2) 'Export' for exporting Bookmarks \n" 
-			        + "3) 'Import' for importing Bookmarks \n"
+			System.out.println("Enter your choice as follows :\n" + "1) 'Add' for Adding URL \n"
+					+ "2) 'Export' for exporting Bookmarks \n" + "3) 'Import' for importing Bookmarks \n"
 					+ "4) 'Display' for displaying Bookmarks on console \n"
-					+ "5) 'Launch' for launching Bookmark App \n" 
-					+ "6) 'Exit' for exiting Bookmark App");
+					+ "5) 'Launch' for launching Bookmark App \n" + "6) 'Exit' for exiting Bookmark App");
 
 			String choice = takeInput("Choice");
 
@@ -35,7 +32,8 @@ public class BookmarkMenu {
 
 				bookmark1.setURLName(urlName);
 				bookmark1.setURLAddress(urlAddress);
-				bookmarkManager.addURL(bookmark1);
+				bookmarkManager.addURLToHTML(bookmark1);
+				bookmarkManager.addURLToCSV(bookmark1);
 				break;
 
 			case "Export":
@@ -60,7 +58,7 @@ public class BookmarkMenu {
 
 				bookmarkManager.displayBookmarks();
 				break;
-				
+
 			case "Launch":
 
 				bookmarkManager.launchBookmark();

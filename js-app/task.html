@@ -1,0 +1,47 @@
+<html>  
+    <head>
+        <title>
+            Task
+        </title>
+
+        <body> 
+            <form>
+                <label><b>Enter Name : </b></label>
+                <input type="text" name="message" id="user_input">
+                <input type="button" value="ADD" onclick="showInput();">
+                <span id='display' style="color:red;"></span>
+            </form>
+
+            <p id="append">
+                <ul id="list">
+
+                </ul>
+            </p>
+            <script>    
+                
+                function showInput() {
+
+                    var item=document.getElementById("user_input").value;
+                    var ul=document.getElementById("list");
+                    var li=document.createElement("li");
+                    var errorMessgae="value is not entered";
+
+
+                    if(item!="") {
+                        li.appendChild(document.createTextNode(" "+item));
+                        ul.appendChild(li);
+                        document.getElementById("user_input").value="";
+                    }
+                    else {
+                        document.getElementById('display').innerHTML = errorMessgae;
+                    }
+
+                    //var str1 = document.getElementById("user_input").value;
+                    //document.getElementById('display').innerHTML = str1+document.getElementById("user_input").value;
+                }
+            </script>
+
+        </body>
+        
+    </head>
+</html>
