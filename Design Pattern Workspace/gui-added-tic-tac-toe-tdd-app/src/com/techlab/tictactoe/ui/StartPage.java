@@ -3,15 +3,15 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import com.techlab.tictactoe.Game;
-import com.techlab.tictactoe.Player;
-import com.techlab.tictactoe.ResultAnalyser;
+
+import com.techlab.tictactoe.business.Game;
+import com.techlab.tictactoe.business.Player;
+import com.techlab.tictactoe.business.ResultAnalyser;
 
 public class StartPage extends JFrame {
 
 	private JLabel label1, label2;
 	private JTextField textField1, textField2;
-	//private Player player1, player2;
 	private JButton button;
 	private Game game; 
 	private String player1Name, player2Name;
@@ -30,18 +30,11 @@ public class StartPage extends JFrame {
 		textField2.setBounds(100, 100, 200, 30);
 		player1Name=textField1.getText();
 		player2Name=textField2.getText();
-		//System.out.println("Player1 :"+player1Name);
-		//System.out.println("Player2 :"+player2Name);
-		//player1=new Player();
-		//player1.setPlayerName(firstPlayer);
-		//player2=new Player();
-		//player2.setPlayerName(secondPlayer);
-		//ResultAnalyser resultAnalyser = new ResultAnalyser();
-		//game=new Game(player1, player2, resultAnalyser);
+		textField1.setVisible(true);
+		textField2.setVisible(true);
 		
 		button=new JButton("OK");
 		button.setBounds(140, 150, 100, 30);
-		//button.addActionListener(new OKListener(game));
 		button.addActionListener(new OKListener(this));
 		
 		add(label1);
@@ -55,13 +48,6 @@ public class StartPage extends JFrame {
 		setVisible(true);
 	}
 
-	/*
-	 * public Player getPlayer1() { return player1; }
-	 * 
-	 * public Player getPlayer2() { return player2; }
-	 */
-	
-	
 	public JLabel getLabel1() {
 		return label1;
 	}

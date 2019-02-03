@@ -1,6 +1,6 @@
 package com.techlab.tictactoe.presentation;
 
-import com.techlab.tictactoe.IBoard;
+import com.techlab.tictactoe.business.IBoard;
 
 public class Display {
 

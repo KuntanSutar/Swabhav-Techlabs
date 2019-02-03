@@ -1,12 +1,10 @@
 package com.techlab.tictactoe.test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.Assert.assertEquals;
 import org.junit.jupiter.api.Test;
 
-import com.techlab.tictactoe.Board;
-import com.techlab.tictactoe.IBoard;
-import com.techlab.tictactoe.Mark;
+import com.techlab.tictactoe.business.Board;
+import com.techlab.tictactoe.business.IBoard;
+import com.techlab.tictactoe.business.Mark;
 
 class BoardTest {
 

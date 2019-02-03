@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import com.techlab.tictactoe.Board;
-import com.techlab.tictactoe.IBoard;
+import com.techlab.tictactoe.business.Board;
+import com.techlab.tictactoe.business.IBoard;
 import com.techlab.tictactoe.presentation.Display;
 
 class DisplayTest {

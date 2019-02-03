@@ -98,10 +98,10 @@ Most common Design Pattern is Strategy Pattern. Swaps strategy at runtime.
 
 30/1/2019
 Implement DataService class using Enum.
-Cross cutting concerns in computing programming. How to avoid it?
+Cross cutting concerns in computer programming. How to avoid it?
 How to do double check locking with DataService!
 
-Oberver Pattern are high level call backs.
+Observer Pattern are high level call backs.
 source, publisher
 target, subscriber, observer, listeners
 

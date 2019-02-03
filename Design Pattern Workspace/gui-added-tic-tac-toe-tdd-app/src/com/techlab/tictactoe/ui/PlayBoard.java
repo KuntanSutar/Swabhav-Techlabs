@@ -3,41 +3,40 @@ package com.techlab.tictactoe.ui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import com.techlab.tictactoe.Game;
-import com.techlab.tictactoe.GameState;
-import com.techlab.tictactoe.Mark;
-import com.techlab.tictactoe.Player;
-import com.techlab.tictactoe.ResultAnalyser;
+import com.techlab.tictactoe.business.Game;
+import com.techlab.tictactoe.business.GameState;
+import com.techlab.tictactoe.business.Mark;
+import com.techlab.tictactoe.business.Player;
+import com.techlab.tictactoe.business.ResultAnalyser;
 
 public class PlayBoard extends JFrame implements ActionListener {
 
 	private JButton button1, button2, button3, button4, button5, button6, button7, button8, button9;
 	private JButton button;
 	private JLabel label;
-	private String player1Name, player2Name;
+	private String firstPlayer, secondPlayer;
 	private JTextField textField;
 	private Game game;
-	private GameGUI gameGUI;
-	private PlayBoard playBoard;
 	private StartPage startPage;
 
 	public PlayBoard(StartPage newStartPage) {
-		// game=newGame;
+
 		startPage = newStartPage;
-		player1Name = startPage.getPlayer1Name();
-		player2Name = startPage.getPlayer2Name();
-		Player player1=new Player(player1Name);
-		Player player2=new Player(player2Name);
+		
+		firstPlayer=startPage.getTextField1().getText();
+		secondPlayer=startPage.getTextField2().getText();
+		Player player1=new Player(firstPlayer);
+		Player player2=new Player(secondPlayer);
 		ResultAnalyser resultAnalyser = new ResultAnalyser();
 		game=new Game(player1, player2, resultAnalyser);
 		
-		// gameGUI=new GameGUI(game, this);
 		setTitle("Play Board");
 		button1 = new JButton("1");
 		button2 = new JButton("2");
@@ -60,8 +59,9 @@ public class PlayBoard extends JFrame implements ActionListener {
 		label = new JLabel("Current Player : ");
 		label.setBounds(50, 250, 100, 50);
 		textField = new JTextField();
-		textField.setText(player1Name);
+		textField.setText(firstPlayer);
 		textField.setBounds(150, 265, 90, 20);
+		textField.setVisible(true);
 		add(textField);
 		add(button1);
 		add(button2);
@@ -73,7 +73,6 @@ public class PlayBoard extends JFrame implements ActionListener {
 		add(button8);
 		add(button9);
 		add(label);
-		//gameGUI = new GameGUI(this, startPage);
 		button1.addActionListener(this);
 		button2.addActionListener(this);
 		button3.addActionListener(this);
@@ -139,31 +138,44 @@ public class PlayBoard extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		int userInput=Integer.parseInt(e.getActionCommand());
-		//String plaString = game.getCurrentPlayer().getPlayerName();
-		player1Name = startPage.getPlayer1Name();
-		System.out.println(player1Name);
 		int index = userInput-1;
 		
 		GameState gameState = game.play(index);
-		textField.setText(game.getCurrentPlayer().getPlayerName());
-		//playBoard.setText(currentPlayerName);
+		String currentPlayerName = game.getCurrentPlayer().getPlayerName();
+		textField.setText(currentPlayerName);
 		Mark mark = game.getBoard().getCellMark(index);
+		
+		String cross = "data\\CROSS.jpg";
+		String nought = "data\\NOUGHT.jpg";
+
+		ImageIcon imageIconCross = new ImageIcon(cross);
+		ImageIcon imageIconNought = new ImageIcon(nought);
 		
 		button = (JButton) e.getSource();
 		if(Mark.CROSS==mark) {
 			button.setText("X");
+			//button.setIcon(imageIconCross);
+			button.setEnabled(false);
 		}
 		if(Mark.NOUGHT==mark) {
 			button.setText("O");
+			//button.setIcon(imageIconNought);
+			button.setEnabled(false);
 		}
 		
-		if(gameState==GameState.WON||gameState==GameState.DRAW) {
-			if(gameState==GameState.DRAW) {
-				player1Name= "";
-			}
+		if(gameState==GameState.WON) {
+			Player playerWon=game.switchPlayer();
+			String wonPlayerName=playerWon.getPlayerName();
 			JFrame popUpFrame = new JFrame();
-			JOptionPane.showMessageDialog(popUpFrame, player1Name+" "+gameState);
+			JOptionPane.showMessageDialog(popUpFrame, wonPlayerName+" "+gameState);
+		}
+		
+		if(gameState==GameState.DRAW) {
+			
+			JFrame popUpFrame = new JFrame();
+			JOptionPane.showMessageDialog(popUpFrame, "Match "+gameState);
 		}
 	}
 }

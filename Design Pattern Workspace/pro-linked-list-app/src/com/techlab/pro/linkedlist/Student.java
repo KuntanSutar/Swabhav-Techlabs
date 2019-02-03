@@ -8,6 +8,10 @@ public class Student {
 		name=string;
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	public String toString() {
 		return name;
 	}

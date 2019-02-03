@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import com.techlab.tictactoe.Player;
+import com.techlab.tictactoe.business.Player;
 
 class PlayerTest {
 

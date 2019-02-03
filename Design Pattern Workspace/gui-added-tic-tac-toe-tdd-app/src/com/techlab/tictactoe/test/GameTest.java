@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import com.techlab.tictactoe.Board;
-import com.techlab.tictactoe.Game;
-import com.techlab.tictactoe.GameState;
-import com.techlab.tictactoe.IBoard;
-import com.techlab.tictactoe.Mark;
-import com.techlab.tictactoe.Player;
-import com.techlab.tictactoe.ResultAnalyser;
+import com.techlab.tictactoe.business.Board;
+import com.techlab.tictactoe.business.Game;
+import com.techlab.tictactoe.business.GameState;
+import com.techlab.tictactoe.business.IBoard;
+import com.techlab.tictactoe.business.Mark;
+import com.techlab.tictactoe.business.Player;
+import com.techlab.tictactoe.business.ResultAnalyser;
 
 class GameTest {
 

@@ -2,10 +2,10 @@ package com.techlab.tictactoe.presentation;
 
 import java.util.Scanner;
 
-import com.techlab.tictactoe.Game;
-import com.techlab.tictactoe.GameState;
-import com.techlab.tictactoe.Player;
-import com.techlab.tictactoe.ResultAnalyser;
+import com.techlab.tictactoe.business.Game;
+import com.techlab.tictactoe.business.GameState;
+import com.techlab.tictactoe.business.Player;
+import com.techlab.tictactoe.business.ResultAnalyser;
 
 public class GameConsole {
 
