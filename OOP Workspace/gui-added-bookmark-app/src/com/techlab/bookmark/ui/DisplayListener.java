@@ -15,6 +15,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 public class DisplayListener implements ActionListener {
 
@@ -23,7 +24,7 @@ public class DisplayListener implements ActionListener {
 	private JLabel discription;
 	private JLabel url;
 	private int yCoordinate=50;
-	
+	String urlName, addressName;
 	
 	public DisplayListener(BookmarkFrame newBookmarkFrame) {
 		bookmarkFrame=newBookmarkFrame;
@@ -44,12 +45,22 @@ public class DisplayListener implements ActionListener {
 		while((line=bufferedReader.readLine())!=null) {
 			
 			String[] discriptionAndUrl = line.split(",");
+			urlName=discriptionAndUrl[0];
+			addressName=discriptionAndUrl[1];
 			
-			discription=new JLabel(discriptionAndUrl[0]);
-			discription.setBounds(50, yCoordinate+210, 200, 30);
+			discription=new JLabel(urlName);
+			discription.setBounds(50, yCoordinate+200, 200, 30);
 			
-			url=new JLabel(discriptionAndUrl[1]);
-			url.setBounds(200, yCoordinate+210, 600, 30);
+			url=new JLabel(addressName);
+			url.setBounds(200, yCoordinate+200, 600, 30);
+			
+			discription.setVisible(true);
+			url.setVisible(true);
+
+			bookmarkFrame.add(discription);
+			bookmarkFrame.add(url);
+			SwingUtilities.updateComponentTreeUI(bookmarkFrame);
+			
 			url.addMouseListener(new MouseListener() {
 				
 				@Override
@@ -81,8 +92,6 @@ public class DisplayListener implements ActionListener {
 				}
 			});
 			
-			bookmarkFrame.add(discription);
-			bookmarkFrame.add(url);
 			yCoordinate=yCoordinate+40;
 		}
 		bufferedReader.close();

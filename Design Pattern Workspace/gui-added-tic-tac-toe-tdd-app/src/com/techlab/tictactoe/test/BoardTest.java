@@ -1,5 +1,6 @@
 package com.techlab.tictactoe.test;
 import static org.junit.Assert.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 import com.techlab.tictactoe.business.Board;
