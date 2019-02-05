@@ -8,7 +8,7 @@ import java.util.TreeSet;
 public class DataAnalyser {
 
 	public String maximumSalarisedEmployee(ArrayList<Employee> list) throws Exception {
-		ArrayList<Employee> listOfEmployee = new ArrayList<>();
+		ArrayList<Employee> listOfEmployee = new ArrayList();
 		listOfEmployee.addAll(list);
 		int lastEmployee = listOfEmployee.size() - 1;
 		Employee newEmployee = listOfEmployee.get(lastEmployee);

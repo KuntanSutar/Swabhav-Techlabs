@@ -10,39 +10,41 @@ public class Parser {
 	
 	public ArrayList<Employee> employeeDetails = new ArrayList();
 	
-	public ArrayList<Employee> parse(ILoadable iLoadable) throws MalformedURLException, IOException {
+	public ArrayList<Employee> parse(ILoader iLoader) throws MalformedURLException, IOException {
 	 
-		for(String line : iLoadable.load()) {
+		for(String line : iLoader.load()) {
+			
 			Employee employee=new Employee();
-			String[] entrydetails = line.split(",");
-			employee.setId(Integer.parseInt(entrydetails[0]));
-			employee.setName(entrydetails[1]);
-			employee.setDesignation(entrydetails[2]);
-			employee.setManagerId(entrydetails[3]);
-			employee.setDate(entrydetails[4]);
-			employee.setSalary(Integer.parseInt(entrydetails[5]));
-			employee.setCommision(entrydetails[6]);
-			employee.setDepartmentNumber(Integer.parseInt(entrydetails[7]));
+			String[] entryDetails = line.split(",");
+			employee.setId(Integer.parseInt(entryDetails[0]));
+			employee.setName(entryDetails[1]);
+			employee.setDesignation(entryDetails[2]);
+			employee.setManagerId(entryDetails[3]);
+			employee.setDate(entryDetails[4]);
+			employee.setSalary(Integer.parseInt(entryDetails[5]));
+			employee.setCommision(entryDetails[6]);
+			employee.setDepartmentNumber(Integer.parseInt(entryDetails[7]));
 			employeeDetails.add(employee);
+			
 		}
 		return null;
 	}
 
-	public TreeSet<Employee> uniqueEmployeeDetails = new TreeSet<Employee>();
+	public TreeSet<Employee> uniqueEmployeeDetails = new TreeSet();
 	
-	public TreeSet<Employee> parseUniqueDetails(ILoadable iloader) throws IOException {
+	public TreeSet<Employee> parseUniqueDetails(ILoader iLoader) throws IOException {
 		
-		for (String line : iloader.load()) {
-			String[] details = line.split(",");
+		for (String line : iLoader.load()) {
+			String[] entryDetails = line.split(",");
 			Employee employee = new Employee();
-			employee.setId(Integer.parseInt(details[0]));
-			employee.setName(details[1]);
-			employee.setDesignation(details[2]);
-			employee.setManagerId(details[3]);
-			employee.setDate(details[4]);
-			employee.setSalary(Integer.parseInt(details[5]));
-			employee.setCommision(details[6]);
-			employee.setDepartmentNumber(Integer.parseInt(details[7]));
+			employee.setId(Integer.parseInt(entryDetails[0]));
+			employee.setName(entryDetails[1]);
+			employee.setDesignation(entryDetails[2]);
+			employee.setManagerId(entryDetails[3]);
+			employee.setDate(entryDetails[4]);
+			employee.setSalary(Integer.parseInt(entryDetails[5]));
+			employee.setCommision(entryDetails[6]);
+			employee.setDepartmentNumber(Integer.parseInt(entryDetails[7]));
 			uniqueEmployeeDetails.add(employee);
 		}
 		return uniqueEmployeeDetails;

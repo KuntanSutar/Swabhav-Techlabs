@@ -6,8 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class DiskLoader implements ILoadable {
+public class DiskLoader implements ILoader {
 
 	private String path;
 	
@@ -24,6 +25,7 @@ public class DiskLoader implements ILoadable {
 		while ((line = br.readLine()) != null) {
 			contentarraylist.add(line);
 		}
+		br.close();
 		return contentarraylist;
 	}
 

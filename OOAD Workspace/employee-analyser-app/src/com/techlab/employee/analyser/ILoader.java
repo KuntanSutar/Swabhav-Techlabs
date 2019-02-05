@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 
-public interface ILoadable {
+public interface ILoader {
 
 	ArrayList<String> load() throws MalformedURLException, IOException;
 }

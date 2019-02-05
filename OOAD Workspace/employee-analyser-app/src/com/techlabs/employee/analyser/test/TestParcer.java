@@ -16,22 +16,22 @@ import com.techlab.employee.analyser.URLLoader;
 public class TestParcer {
 
 	public static void main(String[] args) throws Exception {
-		
+
 		Parser parser = new Parser();
 		parser.parse(new URLLoader("https://swabhav-tech.firebaseapp.com/emp.txt"));
 		parser.parseUniqueDetails(new DiskLoader("data\\dataFile.txt"));
 
 		DataAnalyser analyser = new DataAnalyser();
-		
-		TreeSet<Employee> uniqueEmployeeDetailsTreeSet = parser.parseUniqueDetails(new DiskLoader("data\\dataFile.txt"));
+
+		TreeSet<Employee> uniqueEmployeeDetailsTreeSet = parser
+				.parseUniqueDetails(new DiskLoader("data\\dataFile.txt"));
 		ArrayList<Employee> uniqueEmployeeDetailsArrayList = new ArrayList<>();
 		uniqueEmployeeDetailsArrayList.addAll(uniqueEmployeeDetailsTreeSet);
-		
-		int indexOfMaxSalariedEmployee = uniqueEmployeeDetailsArrayList.size()-1;
-		Employee maxSalariedEmployee=uniqueEmployeeDetailsTreeSet.last();
+
 		Collections.sort(uniqueEmployeeDetailsArrayList, new SalaryComparator());
-		
-		System.out.println("Maximum salaried employee is: "+ analyser.maximumSalarisedEmployee(uniqueEmployeeDetailsArrayList));
+
+		System.out.println(
+				"Maximum salaried employee is: " + analyser.maximumSalarisedEmployee(uniqueEmployeeDetailsArrayList));
 		System.out.println(analyser.getEmployeesByDesignation(parser.uniqueEmployeeDetails));
 		System.out.println(analyser.getEmployeeByDepartmentNumber(parser.uniqueEmployeeDetails));
 	}

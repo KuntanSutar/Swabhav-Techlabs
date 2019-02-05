@@ -18,7 +18,6 @@ public class TestEmployee {
 		URLLoader urlloader = new URLLoader("https://swabhav-tech.firebaseapp.com/emp.txt");
 		DiskLoader diskloader = new DiskLoader("data\\dataFile.txt");
 		
-		
 		System.out.println(urlloader.load());
 		System.out.println(diskloader.load());
 		

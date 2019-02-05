@@ -16,7 +16,7 @@ public class TenRupeesDispenser implements IDispenser {
 
 			int numberOfNotes = currency.getAmount() / 10;
 			int remainingMoney = currency.getAmount() % 10;
-			System.out.println("Dispensing " + numberOfNotes + ", 10 Rupees Notes");
+			System.out.println("Dispensing " + numberOfNotes + ", 10 Rupees Note(s)");
 
 			if (remainingMoney != 0) {
 				this.nextDispenser.dispense(new Currency(remainingMoney));

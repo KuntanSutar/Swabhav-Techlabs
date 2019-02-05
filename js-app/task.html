@@ -1,45 +1,54 @@
-<html>  
-    <head>
-        <title>
-            Task
-        </title>
+<html>
 
-        <body> 
-            <form>
-                <label><b>Enter Name : </b></label>
-                <input type="text" name="message" id="user_input">
-                <input type="button" value="ADD" onclick="showInput();">
-                <span id='display' style="color:red;"></span>
-            </form>
+<head>
+    <title>
+        Task
+    </title>
 
-            <p id="append">
-                <ul id="list">
+<body>
+    <form>
+        <label><b>Enter Name : </b></label>
+        <input type="text" name="message" id="user_input">
+        <input id="add" type="button" value="ADD" >
+        <span id='display' style="color:red;"></span>
+    </form>
 
-                </ul>
-            </p>
-            <script>    
-                
+    <p id="append">
+        <ul id="list">
+
+        </ul>
+    </p>
+    <script>
+        (
+            function () {
+                var addButton=document.getElementById("add");
+                addButton.addEventListener("click", showInput);
+
                 function showInput() {
 
-                    var item=document.getElementById("user_input").value;
-                    var ul=document.getElementById("list");
-                    var li=document.createElement("li");
-                    var errorMessgae="value is not entered";
+                    var item = document.getElementById("user_input").value;
+                    var ul = document.getElementById("list");
+                    var li = document.createElement("li");
+                    var errorMessgae = "value is not entered";
 
 
-                    if(item!="") {
-                        li.appendChild(document.createTextNode(" "+item));
+                    if (item != "") {
+                        li.appendChild(document.createTextNode(" " + item));
                         ul.appendChild(li);
-                        document.getElementById("user_input").value="";
+                        document.getElementById("user_input").value = "";
                     }
                     else {
                         document.getElementById('display').innerHTML = errorMessgae;
                     }
-                    
-                }
-            </script>
 
-        </body>
-        
-    </head>
+                }
+            }
+        )();
+
+    </script>
+
+</body>
+
+</head>
+
 </html>

@@ -11,7 +11,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
-public class URLLoader implements ILoadable {
+public class URLLoader implements ILoader {
 
 	private String urlName;
 	
@@ -26,8 +26,8 @@ public class URLLoader implements ILoadable {
 		URL url = new URL(urlName);
 		URLConnection urlConnection = url.openConnection();
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+		
 		String line;
-
 		while ((line = bufferedReader.readLine()) != null) {
 			contentArrayList.add(line);
 		}

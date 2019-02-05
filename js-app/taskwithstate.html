@@ -1,0 +1,81 @@
+<html>
+
+<head>
+    <title>
+        Task With State
+    </title>
+
+<body>
+    <form>
+        <label><b>Enter Name : </b></label>
+        <input type="text" name="message" id="user_input" placeholder="Add Something">
+        <input id="add" type="button" value="ADD" >
+        <span id='display' style="color:red;"></span>
+    </form>
+
+    <p id="append">
+        <ul id="list">
+
+        </ul>
+    </p>
+    <script>
+        
+        //var addButton = document.getElementById("add");
+        //addButton.addEventListener("click", showInput);
+        localStorage
+        var counter=0;
+        var listOfItems=[];
+        var ul=document.getElementById("list");
+
+        function addItem() {
+            var item = document.getElementById("user_input").value;
+            if(counter==0) {
+                retrieveItemFromLocalStorage();
+            }
+            if(validate(item)) {
+                    listOfItems[item]=item;
+                    counter++;
+                    storeItemInLocalStorage(item);
+                    display(item);
+            }
+        }
+          
+        function validate(item) {
+            if (item != "") {
+                return true;
+            }
+            else {
+            return false;
+            }
+        }
+
+        function display(item) {
+            var li=document.createElement("li");
+            
+            li.appendChild(document.createTextNode(" " + item));
+            ul.appendChild(li);
+            document.getElementById("user_input").value = "";
+            document.getElementById("display").innerHTML="";
+            
+        }
+
+        function storeItemInLocalStorage(listOfItems) {
+            localStorage.setItem("Items",JSON.stringify(listOfItems));
+        }
+
+        function retrieveItemFromLocalStorage() {
+            var item=JSON.parse(localStorage.getItem("Items"));
+            for(var index=0; index<listOfItems.length; index++) {
+                display(listOfItems[i]);
+            }
+        }
+
+        addButton=document.getElementById("add");
+        addButton.addEventListener("click",addItem);
+    </script>
+
+</body>
+
+</head>
+
+</html>
