@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+
+<body>
+    <button id="button"> Fetch Data </button>
+    <div id="animal-data">
+
+    </div>
+    <script>
+        var button = document.getElementById("button");
+        var animalDisplay=document.getElementById("animal-data");
+        button.addEventListener("click", function () {
+            var request = new XMLHttpRequest();
+            // GET to download data from server
+            request.open('GET', 'https://learnwebcode.github.io/json-example/animals-1.json');
+            request.onload = function () {
+                console.log(request.responseText);
+                var data = request.responseText;
+                console.log(data[0]);
+                var jsondata = JSON.parse(request.responseText);
+                console.log(jsondata[0]);
+                renderHTML(data);
+            };
+            request.send();
+        });
+
+    </script>
+
+</body>
+
+</html>
