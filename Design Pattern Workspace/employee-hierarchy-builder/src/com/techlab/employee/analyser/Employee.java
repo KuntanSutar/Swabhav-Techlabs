@@ -15,18 +15,6 @@ public class Employee implements Comparable<Employee>{
 	private int departmentNumber;
 	private ArrayList<Employee> reportList;
 	
-	public Employee(int id, String name, String designation, String managerId, String date, int salary,
-			String commision, int departmentNumber) {
-		this.id = id;
-		this.name = name;
-		this.designation = designation;
-		this.managerId = managerId;
-		this.date = date;
-		this.salary = salary;
-		this.commision = commision;
-		this.departmentNumber = departmentNumber;
-	}
-
 	public Employee() {
 		reportList = new ArrayList();
 	}

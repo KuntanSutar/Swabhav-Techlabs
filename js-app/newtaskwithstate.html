@@ -1,0 +1,141 @@
+<html>
+
+<head>
+
+    <style>
+        .striked{
+                text-decoration: line-through;
+                color: red;
+            }
+            #archieve{
+                display: none;
+            }
+        
+        </style>
+    <script src="moment.js"></script>
+    
+</head>
+
+<body>
+    Enter Item:<input type="text" id="task" placeholder="Add Item">
+    <button id="add" onclick="addTaskToList()">Add</button>
+    <ul id="container"></ul>
+    <ul id="archieve"></ul>
+
+    <script>
+        var cnt = 0;
+        var tasks = [];
+        var archieveTasks = [];
+        var objectList = [];
+        function addTaskToList() {
+            var txtTask = document.getElementById("task").value;
+            var ul = document.getElementById("container");
+            var li = document.createElement("li");
+            if (txtTask == "" || txtTask == " ") {
+                document.getElementById("task").innerHTML = "Please enter value";
+            }
+            else {
+                document.getElementById("task").innerHTML = "";
+                appendElementToUL(ul, txtTask, li);
+                document.getElementById("task").value = "";
+                tasks.push(li.firstChild.innerHTML); //spanText is equal to li.firstChild
+                addTaskToLocalStorage();
+                objectList.push({
+                    date: new Date(),
+                    description: txtTask,
+                    isCompleted: false,
+                    isDeleted: false,
+                    element: li
+                });
+                console.log("Object List after push : ");
+                console.log(objectList);
+            }
+        }
+        function appendElementToUL(ul, txtTask, li) {
+            var spanText = document.createElement("span");
+            spanText.innerHTML = txtTask;
+            spanText.addEventListener("click", function () {
+                toggelStrike(this);
+            });
+            var spanCross = document.createElement("span");
+            spanCross.innerHTML = " &times; ";
+            spanCross.addEventListener("click", function () {
+                removeElement(this);
+            });
+            var spanTimer = document.createElement("span");
+            spanTimer.innerHTML = "0";
+            setInterval(function () { timer(spanTimer) }, 1000);
+            li.append(spanText);
+            li.append(spanCross);
+            li.append(spanTimer);
+            ul.insertBefore(li, ul.firstChild);
+        }
+        function toggelStrike(span) {
+            span.classList.toggle("striked");
+            for (let i = 0; i < objectList.length; i++) {
+                if (span.parentElement == objectList[i].element) {
+                    objectList[i].isCompleted = !objectList[i].isCompleted;
+                }
+            }
+            console.log("Object List after toggle : ");
+            console.log(objectList);
+        }
+        function removeElement(span) {
+            var ul = document.getElementById("archieve");
+            var li = span.parentElement;
+            ul.insertBefore(li, ul.firstChild);
+            let idx = tasks.indexOf(li);
+            tasks.splice(idx, 1);
+            archieveTasks.push(li.firstChild.innerHTML);
+            addTaskToLocalStorage();
+            for (let i = 0; i < objectList.length; i++) {
+                if (span.parentElement == objectList[i].element)
+                    objectList[i].isDeleted = true;
+            }
+            console.log("Object List after delete : ");
+            console.log(objectList);
+        }
+        function timer(span) {
+            //var spanTime=span.innerHTML;
+            //spanTime=parseInt(spanTime)+1;
+            //spanTime++;
+            //span.innerHTML=spanTime;
+            //var spanTime=moment().startOf('second').fromNow();
+            var spanTime = moment(tasks[cnt].date).fromNow();
+            span.innerHTML = spanTime;
+        }
+        function addTaskToLocalStorage() {
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            localStorage.setItem("archiveTasks", JSON.stringify(archieveTasks));
+        }
+        function reloadPage() {
+            var ul, li;
+            tasks = JSON.parse(localStorage.getItem("tasks"));
+            if (tasks != null) {
+                ul = document.getElementById("container");
+                tasks.forEach(text => {
+                    li = document.createElement("li");
+                    appendElementToUL(ul, text, li);
+                });
+            } else {
+                tasks = [];
+            }
+            archieveTasks = JSON.parse(localStorage.getItem("archiveTasks"));
+            if (archieveTasks != null) {
+                ul = document.getElementById("archieve");
+                archieveTasks.forEach(text => {
+                    li = document.createElement("li");
+                    appendElementToUL(ul, text, li);
+                });
+            } else {
+                archieveTasks = [];
+            }
+        }
+    </script>
+
+    <script>
+        reloadPage();
+    </script>
+</body>
+
+</html>

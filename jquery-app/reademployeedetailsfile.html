@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Read Employee Details File</title>
+    <script src="jquery.csv.js"></script>
+    <script src="jquery-3.3.1.js"></script>
+
+</head>
+
+<body>
+    <div>
+        <input type="submit" id="submit" value="Show Employee Details">
+    </div>
+    <script>
+        $('#submit').on('click', function () {
+            $.ajax({
+                url: 'https://swabhav-tech.firebaseapp.com/emp.txt',
+                type: 'GET',
+                success: function (data) {
+                    var result = $.csv.toArrays(data);
+                    console.log(result);
+                    document.write("<table>");
+                    document.write(`<th>Employee ID</th><th>Employee Name</th><th>Employee Designation</th>
+                    <th>Manager ID</th><th>Date of Joining</th><th>Salary</th><th>Commission</th>
+                    <th>Department Number</th>`);
+                    
+                    for(var i=0; i<result.length;i++) {
+                        document.write("<tr>");
+                        var row=result[i];
+                        for(var j=0; j<row.length; j++) {
+                            document.write(`<td>${row[j]}</td>`);
+                        }
+                        document.write("</tr>");
+                    }
+                    document.write("</table>");
+                },
+                error:function (error) {
+                    console.log("error occured");
+                    console.log(error);
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>

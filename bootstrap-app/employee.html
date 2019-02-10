@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.css">
+    <script src="jquery-3.3.1.js"></script>
+    <script src="jquery.csv.js"></script>
+    <style>
+    .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+        margin-top: 210px;
+        margin-left: 480px;
+    }
+
+    @keyframes spin {
+        0% { 
+            transform: rotate(0deg); 
+        }
+        100% { 
+            transform: rotate(360deg); 
+        }
+    }
+    </style>
+</head>
+
+<body class="container" style="margin-top: 10px">
+
+    <div>
+        <input class="btn btn-primary" type="submit" id="submit" value="See Data" />
+    </div>
+    
+    <div id="displayTable"></div>
+    <div>
+        <table id="employeeTable" class="table table-striped"></table>
+    </div>
+    <div class="loader"></div>
+    <script>
+        $("#submit").on('click', function () {
+            $(".loader").show();
+            $.ajax({
+                url: 'http://localhost/bootstrap-app/emp.txt',
+                type: 'get',
+                success: function (result) {
+                    setTimeout(function () {
+                        $(".loader").hide();
+                        createTableUsingString(result);
+                    }, 2000);
+                },
+                error: function() {
+                    $(".loader").hide();
+                    $("#displayTable").html("Network is weak");
+                }                                                                
+            });
+        });
+
+        function makeTable(data) {
+            setTimeout(function () {
+                var result = $.csv.toArrays(data);
+
+                for (var i = 0; i < result.length; i++) {
+
+                    $("#employeeTable").append("<tr>")
+                    console.log(result[i]);
+                    var row = result[i];
+                    for (var j = 0; j < row.length; j++) {
+                        $("#employeeTable").append("<td>" + " " + row[j] + " " + "<td>")
+
+                    }
+                    $("#employeeTable").append("</tr>")
+                }
+
+            }, 2000);
+        }
+
+        function createTableUsingString(data) {
+            var result = $.csv.toArrays(data);
+            var string;
+            string = "<table class='table table-striped'>";
+            string += "<th>Employee ID</th><th>Employee Name</th> <th>Employee Designation</th> <th>Manager ID</th><th> Date of Joining</th><th>Salary</th> <th>Commission</th> <th>Department Number</th>";
+            for (var i = 0; i < result.length; i++) {
+
+                string += '<tr>';
+                var row = result[i];
+                for (var j = 0; j < row.length; j++) {
+
+                    string += `<td>"${row[j]}"</td>`;
+                    
+                }
+                string += "</tr>";
+            }
+            string += "</table>";
+            string=string.replace(/"/g,"");
+            string=string.replace(/'/g,'');
+            $("#employeeTable").html(string);
+            console.log(string);
+        }
+
+        $(document).ready(function() {
+            $(".loader").hide();
+        });
+
+    </script>
+
+</body>
+
+</html>
