@@ -1,0 +1,86 @@
+<html lang="en">
+
+<head>
+    
+    <title>Example of Bootstrap 3 Accordion with Plus/Minus Icon</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    
+    <script>
+        $(document).ready(function () {
+            // Toggle plus minus icon on show hide of collapse element
+            $(".collapse").on('show.bs.collapse', function () {
+                $(this).parent().find(".glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+            }).on('hide.bs.collapse', function () {
+                $(this).parent().find(".glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="bs-example">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span
+                                class="glyphicon glyphicon-plus"></span> What is Gang of Four (GOF)? </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p>
+                            In 1994, four authors Erich Gamma, Richard Helm, 
+                            Ralph Johnson and John Vlissides published a book titled 
+                            Design Patterns - Elements of Reusable Object-Oriented 
+                            Software which initiated the concept of Design Pattern in 
+                            Software development.These authors are collectively 
+                            known as Gang of Four (GOF). According to these authors 
+                            design patterns are primarily based on the following 
+                            principles of object orientated design.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span
+                                class="glyphicon glyphicon-plus"></span> Why do we use Design patterns?</a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p>Design patterns provide a standard terminology and are 
+                            specific to particular scenario. For example, a singleton 
+                            design pattern signifies use of single object so all developers 
+                            familiar with single design pattern will make use of single object 
+                            and they can tell each other that program is following a singleton 
+                            pattern.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span
+                                class="glyphicon glyphicon-plus"></span> What are the types of Design Patterns? </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p>As per the design pattern reference book Design Patterns - Elements 
+                            of Reusable Object-Oriented Software , there are 23 design patterns 
+                            which can be classified in three categories: Creational, Structural 
+                            and Behavioral patterns.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -4,30 +4,15 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Employee Data</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.css">
     <script src="jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.js"></script>
     <script src="jquery.csv.js"></script>
     <style>
     .loader {
-        border: 16px solid #f3f3f3;
-        border-radius: 50%;
-        border-top: 16px solid #3498db;
-        width: 120px;
-        height: 120px;
-        animation: spin 2s linear infinite;
-        margin-top: 210px;
-        margin-left: 480px;
-    }
-
-    @keyframes spin {
-        0% { 
-            transform: rotate(0deg); 
-        }
-        100% { 
-            transform: rotate(360deg); 
-        }
+        margin-left: 150px;
     }
     </style>
 </head>
@@ -37,12 +22,17 @@
     <div>
         <input class="btn btn-primary" type="submit" id="submit" value="See Data" />
     </div>
-    
+
     <div id="displayTable"></div>
+
+    <div class="loader" >
+        <img id="loading-image" src="loader.gif" alt="Loading..." />
+    </div>
+
     <div>
         <table id="employeeTable" class="table table-striped"></table>
     </div>
-    <div class="loader"></div>
+
     <script>
         $("#submit").on('click', function () {
             $(".loader").show();
@@ -55,13 +45,14 @@
                         createTableUsingString(result);
                     }, 2000);
                 },
-                error: function() {
+                error: function () {
                     $(".loader").hide();
                     $("#displayTable").html("Network is weak");
-                }                                                                
+                }
             });
         });
 
+        //Using append
         function makeTable(data) {
             setTimeout(function () {
                 var result = $.csv.toArrays(data);
@@ -81,6 +72,7 @@
             }, 2000);
         }
 
+        //Using String
         function createTableUsingString(data) {
             var result = $.csv.toArrays(data);
             var string;
@@ -93,18 +85,18 @@
                 for (var j = 0; j < row.length; j++) {
 
                     string += `<td>"${row[j]}"</td>`;
-                    
+
                 }
                 string += "</tr>";
             }
             string += "</table>";
-            string=string.replace(/"/g,"");
-            string=string.replace(/'/g,'');
+            string = string.replace(/"/g, "");
+            string = string.replace(/'/g, '');
             $("#employeeTable").html(string);
             console.log(string);
         }
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             $(".loader").hide();
         });
 
