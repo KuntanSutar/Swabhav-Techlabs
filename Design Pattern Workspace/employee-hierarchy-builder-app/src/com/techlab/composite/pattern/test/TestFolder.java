@@ -39,7 +39,7 @@ public class TestFolder {
 
 		Employee smith = new Employee("SMITH");
 		ford.addItem(smith);
-		jones.displayDetails();
+		king.displayDetails();
 	}
 
 }

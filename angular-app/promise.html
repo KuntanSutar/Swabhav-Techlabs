@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <script>
+      let promiseToCleanTheRoom = new Promise(function(resolve, reject) {
+        //cleaning the room
+        let isClean = false;
+
+        if (isClean) {
+          resolve("cleaned!!!");
+        } else {
+          reject("not cleaned!!!");
+        }
+      });
+
+      promiseToCleanTheRoom
+        .then(function(fromResolve) {
+          console.log("Room is " + fromResolve);
+        })
+        .catch(function(fromReject) {
+          console.log("Room is " + fromReject);
+        });
+
+      //One promise after another
+      let cleanRoom = function() {
+        return new Promise(function(resolve, reject) {
+          resolve("cleaning the room");
+        });
+      };
+
+      let removeGarbageFromRoom = function(message) {
+        return new Promise(function(resolve, reject) {
+          resolve(message + ", removing garbage");
+        });
+      };
+
+      let winIcecream = function(message) {
+        return new Promise(function(resolve, reject) {
+          resolve(message + " At last won Icecream");
+        });
+      };
+
+      cleanRoom()
+        .then(function(result) {
+          return removeGarbageFromRoom(result);
+        })
+        .then(function(result) {
+          return winIcecream(result);
+        })
+        .then(function(result) {
+          console.log("Finished " + result);
+        });
+
+      //All promises completed in parallel
+      Promise.all([cleanRoom(), removeGarbageFromRoom(), winIcecream()]).then(
+        function() {
+          console.log("All tasks finished");
+        }
+      );
+
+      //To check if one of them is finished    
+      Promise.race([cleanRoom(), removeGarbageFromRoom(), winIcecream()]).then(
+        function() {
+          console.log("One of the tasks finished");
+        }
+      );
+    </script>
+  </body>
+</html>

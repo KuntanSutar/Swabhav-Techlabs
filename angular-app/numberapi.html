@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<script src="angular.js"></script>
+<body>
+
+<div ng-app="swabhav-app" ng-controller="myCtrl"> 
+<form novalidate>
+    <input ng-model="number">
+    <input type="submit" ng-click="submitForm(number)" value="Show data">
+</form>
+<p>{{number}}</p>
+<pre>{{ data }}</pre>
+
+<script>
+angular.module('swabhav-app', [])
+.controller('myCtrl', function($scope, $http) {
+    $scope.number ;
+    $scope.submitForm = function(number){
+    $http({
+        method : "GET",
+        url : "http://numbersapi.com/"+number
+    }).then(function mySuccess(response) {
+        $scope.data = response.data;
+        }, function myError(response) {
+        $scope.data = response.statusText;
+    });
+}});
+</script>
+
+</body>
+</html>

@@ -25,7 +25,6 @@ public class Folder implements IDiskItem {
 		
 		System.out.println(TestFolder.changable+name);
 		TestFolder.changable.append("\t");
-		//Iterator itr = items.iterator();
 		for(IDiskItem item : items) {
 			IDiskItem iDiskItem = (IDiskItem)item;
 			iDiskItem.display();

@@ -25,7 +25,6 @@ public class Parser {
 			employee.setCommision(entryDetails[6]);
 			employee.setDepartmentNumber(Integer.parseInt(entryDetails[7]));
 			employeeDetails.add(employee);
-			
 		}
 		return null;
 	}

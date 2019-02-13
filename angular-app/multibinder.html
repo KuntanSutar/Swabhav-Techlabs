@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="swabhav">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="angular.js"></script>
+  </head>
+
+  <body>
+    <section ng-controller="multibindingController" style="border:2px solid red; margin:10px; padding:10px">
+        Text : <input ng-model="text" /><br><br>
+        Forground Color : <input ng-model="forgroundColor" /><br><br>
+        Background Color : <input ng-model="backgroundColor" /><br><br>
+        Font Size : <input ng-model="textSize" placeholder="Enter size in pixels"/><br><br>
+        Font Family : <input ng-model="textFamily" /><br><br>
+        <textarea 
+            cols="40" 
+            rows="10" 
+            ng-style="{'color':forgroundColor, 
+                       'background-color':backgroundColor, 
+                       'font-size':textSize, 
+                       'font-family':textFamily}">
+                       {{text}}
+        </textarea>
+    </section>
+
+    <script>
+      var app = angular.module("swabhav", []);
+      app.controller("multibindingController", function($scope) {
+      });
+    </script>
+  </body>
+</html>
