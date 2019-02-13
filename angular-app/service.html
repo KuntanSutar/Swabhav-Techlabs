@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="swabhav">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <script src="angular.js"></script>
+</head>
+
+<body>
+
+    <section ng-controller="firstController">
+        <h1>Even</h1>
+        Enter: <input type="number" ng-model="checknumber" ng-style="{'background-color':color}"ng-keypress="showEven($event)"></input>
+        {{checknumber}}
+    </section>
+    <section ng-controller="SecondController">
+
+    </section>
+
+    <script>
+        angular.module('swabhav', []).
+            factory('mathSrc', ['$log', '$rootScope', function ($log, $rootScope) {
+                $log.info($rootScope);
+                $log.info("Inside the service");
+                var service = {}
+                service.even = function (a) {
+                    if (a % 2 == 0) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+                service.prime=function(a){
+                }
+                return service;
+            }
+            ])
+            .controller('firstController', ['$scope', 'mathSrc', function ($scope, mathSrc) {
+                $scope.showEven = (event) => {
+                var num = mathSrc.even($scope.checknumber);
+                console.log($scope.checknumber);
+                if (num == true) {
+                    $scope.color = 'Red';
+                } else {
+                    $scope.color = 'Green';
+                }
+                }
+            }])
+            .controller('SecondController', ['$scope', 'mathSrc', function ($scope, mathSrc) {
+                console.log(mathSrc.even(6));
+            }])
+    </script>
+</body>
+
+</html>

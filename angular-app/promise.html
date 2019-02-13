@@ -10,7 +10,7 @@
     <script>
       let promiseToCleanTheRoom = new Promise(function(resolve, reject) {
         //cleaning the room
-        let isClean = false;
+        let isClean = true;
 
         if (isClean) {
           resolve("cleaned!!!");
@@ -64,7 +64,7 @@
         }
       );
 
-      //To check if one of them is finished    
+      //To check if one of them is finished
       Promise.race([cleanRoom(), removeGarbageFromRoom(), winIcecream()]).then(
         function() {
           console.log("One of the tasks finished");

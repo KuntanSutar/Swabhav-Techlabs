@@ -3,17 +3,17 @@
 <script src="angular.js"></script>
 <body>
 
-<div ng-app="swabhav-app" ng-controller="myCtrl"> 
+<div ng-app="swabhav" ng-controller="numberapiController"> 
 <form novalidate>
     <input ng-model="number">
-    <input type="submit" ng-click="submitForm(number)" value="Show data">
+    <input type="submit" ng-click="submitForm(number)" value="Show Facts">
 </form>
 <p>{{number}}</p>
 <pre>{{ data }}</pre>
 
 <script>
-angular.module('swabhav-app', [])
-.controller('myCtrl', function($scope, $http) {
+angular.module('swabhav', [])
+.controller('numberapiController', function($scope, $http) {
     $scope.number ;
     $scope.submitForm = function(number){
     $http({
