@@ -1,0 +1,33 @@
+<section id="display">
+        
+        <div id="printData">
+                <span class="label label-primary">Total Students</span>
+                <span class="badge">{{data.length}}</span>
+                <table ng-if="data.length>0" class="table table-bordered">
+                    <tr>
+                        <th>Serial No.</th>
+                        <th>Roll Number</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Date</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Delete</th>
+                        <th>Edit</th>
+                    </tr>
+                    <tr ng-repeat="i in data">
+                        <td>{{$index+1}}</td>
+                        <td>{{i.rollNo}}</td>
+                        <td>{{i.name}}</td>
+                        <td>{{i.email}}</td>
+                        <td>{{i.date|date:'short'}}</td>
+                        <td>{{i.age}}</td>
+                        <td ng-if="i.isMale">Male</td>
+                        <td ng-if="!i.isMale">Female</td>
+                        <td><input type="button" ng-click="delete(i.id)" class="delete" id="delete" value="Delete"></td>
+                        <td><a href="#/edit/{{i.id}}" ><input type="button" class="edit" id="edit" value="Edit"></a></td>
+                    </tr>
+                </table>
+        
+        </div>
+</section>

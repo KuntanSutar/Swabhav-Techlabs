@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="swabhav">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BlueBall</title>
+    <script src="angular.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.js"> </script>
+</head>
+
+<body>
+    <section ng-controller="buttonController">
+        <br>
+        <button ng-click="generateButtons($event)">Start
+        </button>
+        <br>
+        <button ng-disabled="isDisabled" ng-repeat="i in array" ng-click=colorChange($event,i)>
+            {{array[i]+1}}
+        </button>
+    </section>
+
+    <script>
+        angular.module('swabhav', [])
+            .controller('buttonController', ['$scope', function ($scope) {
+                $scope.array = [];
+                var count = 0;
+                //$scope.randomNumber = Math.floor((Math.random() * 50) + 1);
+                $scope.randomNumber = 10;
+                $scope.generateButtons = (event) => {
+                    $scope.isDisabled = false;
+                    console.log($scope.randomNumber);
+                    for (let i = 0; i < 50; i++) {
+                        $scope.array.push(i);
+                    }
+                }
+                $scope.colorChange = (event, number) => {
+                    if (count < 5) {
+                        if ((number + 1) > $scope.randomNumber) {
+                            event.target.style.backgroundColor = "Green";
+                            
+                            count++;
+                        }
+                        if ((number + 1) < $scope.randomNumber) {
+                            event.target.style.backgroundColor = "Red";
+                            count++;
+                        }
+                        if ((number + 1) == $scope.randomNumber) {
+                            event.target.style.backgroundColor = "Blue";
+                            count=5;
+                            $scope.isDisabled = true;
+                            alert("You Won");
+                        }
+                    } else {
+                        $scope.isDisabled = true;
+                        alert("Game Over");
+                    }
+                }
+            }])
+    </script>
+
+</body>
+
+</html>

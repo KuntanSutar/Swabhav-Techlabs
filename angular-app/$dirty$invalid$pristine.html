@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="swabhavtechlab">
+
+<head>
+
+    <script src="angular.js"></script>
+
+    <script>
+        angular.module('swabhavtechlab', [])
+            .controller('FormController', ['$scope', function ($scope) {
+                
+            }]);
+    </script>
+    <style>
+        .my-form {
+            transition: all linear 0.5s;
+            background: transparent;
+        }
+
+        .my-form.ng-invalid {
+            background: blue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form name="form" ng-controller="FormController" class="my-form">
+        userType: <input name="input" ng-model="userType" required>
+        <p>userType = {{userType}}</p>
+        <p>form.input.$valid = {{form.input.$valid}}</p>
+        <p>form.$invalid = {{form.$invalid}}</p>
+        <p>form.$dirty = {{form.$dirty}}</p>
+        <p>form.$pristine = {{form.$pristine}}</p>
+
+    </form>
+
+</body>
+
+</html>

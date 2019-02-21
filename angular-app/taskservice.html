@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <script src="js/bootstrap.js"></script>
     <script src="angular.js"></script>
+    <script src="moment.js"></script>
 
 </head>
 
@@ -26,7 +27,8 @@
 
     <div ng-repeat="task in todoList">
         <span class="list-group-item" ng-bind="task.description"></span>
-        <span class="list-group-item"> Added on {{task.date | date:"M/d/yy h:mm a"}}</span>
+        <!-- <span class="list-group-item"> Added on {{task.date | date:"M/d/yy h:mm a"}}</span> -->
+        <span class="list-group-item"> Added on {{task.date | date:'short'}}</span>
     </div>
 
     <script>
@@ -37,7 +39,7 @@
                     return $q(function (resolve, reject) {
                         if(obj!=null){
                             save(obj);
-                            resolve("Task Added Successful")
+                            resolve("Task Added Successfully")
                         } else {
                             reject("Task Rejected")
                         }
@@ -76,7 +78,7 @@
                 $scope.addTask = function () {
                     var task = {
                         description: $scope.taskInput,
-                        date: new Date(),
+                        date: moment(new Date()).format('LLLL'),
                         status: false
                     }
                     taskservice.add(task)

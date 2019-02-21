@@ -1,0 +1,12 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="#/form"> <b>Form</b> </a></li>
+        <li><a href="#/display"> <b>Display</b> </a></li>
+        <li ng-controller="logoutController"><a ng-click="logoutForm()" class="btn"> <b>Logout</b> </a></li>
+        <li ng-controller="loginController"> <p ng-bind="Username"> <b> {{Username}} </b> </p> </li>
+      </ul>
+    </div>
+  </div>
+</nav>

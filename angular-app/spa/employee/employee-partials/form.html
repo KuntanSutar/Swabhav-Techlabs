@@ -1,0 +1,54 @@
+<div>
+    <h1>Employee</h1><br>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="inputempName" class="col-sm-2 control-label">Enter Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" placeholder="Enter Name" ng-model="Name">
+                
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputempDesignation" class="col-sm-2 control-label">Designation</label>
+            <div class="col-sm-10">
+                <select class="form-control dropdown-header"
+                    ng-options="designation for designation in designationList" ng-model="Designation"></select>
+                
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputempMgrId" class="col-sm-2 control-label">Manager Id</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="ManagerId">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputempDate" class="col-sm-2 control-label">Date</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" placeholder="DD-MM-YYYY" ng-model="Date">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputempSalary" class="col-sm-2 control-label">Salary</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" placeholder="Enter Salary" ng-model="Salary">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputempCommission" class="col-sm-2 control-label">Commission</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" placeholder="Enter commission" ng-model="Commission">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputempDeptNo" class="col-sm-2 control-label">Department Number</label>
+            <div class="col-sm-10">
+                <select ng-model="DepartmentNumber" class="form-control"
+                    ng-options="department for department in departmentList"></select>
+            </div>
+        </div>
+        <input type="button" value="Display" ng-click="display()">
+        <input type="button" value="Add" ng-click="add()">
+    </form>
+
+</div>

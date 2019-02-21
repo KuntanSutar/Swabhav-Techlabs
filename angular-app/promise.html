@@ -70,6 +70,17 @@
           console.log("One of the tasks finished");
         }
       );
+
+      let doFirstFunction = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log("First Function");
+          resolve();
+        }, 500);
+      });
+      let doSecondFunction = () => {
+        console.log("Second Function");
+      };
+      doFirstFunction.then(doSecondFunction);
     </script>
   </body>
 </html>

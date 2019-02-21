@@ -1,0 +1,36 @@
+<section>
+    <div>
+        Search <input type='text' ng-model='searchText' placeholder="Search " />
+        <br><br><br>
+        <table ng-if="data.length>0" class="table table-bordered">
+            <tr>
+                <th>Sr. No.</th>
+                <th>Emp Id</th>
+                <th>Employee Name</th>
+                <th>Designation</th>
+                <th>Manager Id</th>
+                <th>Date of Joining</th>
+                <th>Salary</th>
+                <th>Commission</th>
+                <th>Department Number</th>
+                <th>Action</th>
+
+            </tr>
+            <tr ng-repeat="i in data | orderBy:'Name'| filter:searchText">
+                <td>{{$index+1}}</td>
+                <td>{{i.EmpId}}</td>
+                <td>{{i.Name}}</td>
+                <td>{{i.Designation}}</td>
+                <td>{{i.ManagerId}}</td>
+                <td>{{i.Date}}</td>
+                <td>{{i.Salary}}</td>
+                <td>{{i.Commission}}</td>
+                <td>{{i.DepartmentNumber}}</td>
+                <!-- <td class='glyphicon glyphicon-remove btn btn-default'></td> -->
+                <td><button class="btn btn-danger" ng-click="delete(i.EmpId)">&times;</button></a></td>
+
+            </tr>
+        </table>
+    </div>
+
+</section>
