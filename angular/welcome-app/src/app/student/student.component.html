@@ -1,0 +1,20 @@
+<h1>Binding Expression</h1>
+<h1> {{student['studentName']}} </h1>
+<h1 [style.color]= setCGPAToColorProperty>
+  {{student['cgpa']}}
+</h1>
+<h1> {{student['job']}} </h1>
+<h1> {{student['company']}} </h1>
+
+<h1>Using JSON</h1>
+<h1> {{student | json }}</h1>
+
+<b> <p [innerHTML]='message'></p> </b>
+<img [src]='imageSource' [height]='imageHeight' [width]='imageWidth'>
+<br>
+<input type="button" value="Load Courses" (click)="loadCourses()">
+<div>
+  <ul>
+    <li *ngFor="let course of courses"> <b> {{course}} </b> </li>
+  </ul>
+</div>

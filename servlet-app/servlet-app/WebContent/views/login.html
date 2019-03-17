@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Log In</title>
+</head>
+<body>
+	<form name="myForm" action="http://localhost:9090/servlet-app/auth"
+		method="POST">
+		Username : <input type="text" name="username" id="1" required><span
+			id="alertForUsername" style="color: red"></span><br> 
+		Password : <input type="password" name="password" id="2" required><span
+			id="alertForPassword" style="color: red"></span><br> 
+		<input type="submit" value="Submit" id="validate">
+	</form>
+
+	<script>
+		(function() {
+			var validateElement = document.getElementById("validate");
+			validateElement.addEventListener("click", validate);
+
+			function validate() {
+				var x = document.forms["myForm"]["username"].value;
+				if (x == "") {
+					//alert("Username must be filled out");
+					document.getElementById("alertForUsername").innerHTML = "This field is blank";
+					return false;
+				}
+				var y = document.forms["myForm"]["password"].value;
+				if (y == "") {
+					//alert("Password must be filled out");
+					document.getElementById("alertForPassword").innerHTML = "This field is blank";
+					return false;
+				}
+			}
+		})();
+	</script>
+</body>
+</html>

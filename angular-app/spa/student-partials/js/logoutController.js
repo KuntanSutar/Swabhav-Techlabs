@@ -1,10 +1,9 @@
-studentModule.controller("logoutController", function ($scope,$location, studentService) {
-    $scope.logoutForm=function(){ 
+studentModule.controller("logoutController", function ($scope,$rootScope, $location, studentService) {
       console.log("Inside logout")
 
       if (sessionStorage.getItem("loggedIn") == "yes") {
         sessionStorage.setItem("loggedIn","no");
+        $rootScope.loggedIn=false;
         window.location="#/display";
       }
-    }
   })

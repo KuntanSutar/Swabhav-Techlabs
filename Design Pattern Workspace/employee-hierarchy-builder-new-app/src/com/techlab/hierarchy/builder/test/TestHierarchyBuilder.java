@@ -11,39 +11,35 @@ import com.techlab.hierarchy.builder.Employee;
 import com.techlab.hierarchy.builder.HierarchyBuilder;
 import com.techlab.hierarchy.builder.Parser;
 
-
 public class TestHierarchyBuilder {
 
 	public static StringBuffer changable = new StringBuffer();
-	
+
 	public static void main(String[] args) throws Exception {
 
 		DiskLoader diskLoader = new DiskLoader("data\\dataFile.txt");
-		ArrayList<String> employeeDetailsList=diskLoader.loadFile();
-		
+		ArrayList<String> employeeDetailsList = diskLoader.loadFile();
+
 		Parser parser = new Parser();
 		Set<Employee> employeeDetailsSet = parser.parse(employeeDetailsList);
-		
+
 		HierarchyBuilder hierarchyBuilder = new HierarchyBuilder(employeeDetailsSet);
 		Employee ceo = hierarchyBuilder.getRootEmployee();
 		ceo.displayHierarchy();
-		//System.out.println(changable);
-		System.out.println(ceo.displayXML());
+
 		StringBuffer stringBufferXMLContent = ceo.displayXML();
+		System.out.println(stringBufferXMLContent);
+
 		String stringXMLContent = stringBufferXMLContent.toString();
-//		hierarchyBuilder.createHeirarchy();
-		//generateXMLFile(stringXMLContent);
-		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("data//EmployeeDetailsXMLFile.xml"));
-		bufferedWriter.write(stringXMLContent);
-		bufferedWriter.close();
+		generateXMLFile(stringXMLContent);
+		
+		ceo.buildJTree();
 	}
 
-	public static void generateXMLFile(String string) throws Exception {
-//		FileWriter fileWriter =new FileWriter("data//EmployeeDetailsXMLFile.xml");
-//		fileWriter.write(string);
-//		fileWriter.close();
+	public static void generateXMLFile(String stringXMLContent) throws Exception {
+
 		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("data//EmployeeDetailsXMLFile.xml"));
-		bufferedWriter.write(string);
+		bufferedWriter.write(stringXMLContent);
 		bufferedWriter.close();
 	}
 }

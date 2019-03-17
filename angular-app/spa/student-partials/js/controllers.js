@@ -14,4 +14,8 @@ studentModule.config(function($routeProvider) {
         .when('/login',{
           templateUrl:'login.html',
           controller:'loginController'})
+        .when('/logout', {
+          template:'<div></div>',
+          controller:"logoutController"
+        })
     }) 

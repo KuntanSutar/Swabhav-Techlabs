@@ -57,4 +57,7 @@ public class HierarchyBuilder {
 	 * manger.addReportee(employee); } } } }
 	 */
 	
+	public Map<Integer, Employee> getEmpMap() {
+		return empMap;
+	}
 }
