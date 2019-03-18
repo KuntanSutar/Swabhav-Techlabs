@@ -23,8 +23,7 @@ public class DeleteStudentsController extends HttpServlet {
 		Student student = studentsService.getStudentByRollNo(rollNo);
 		System.out.println("Deleted Student : "+student.getName());
 		studentsService.deleteStudentDetails(student);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/form.jsp");
-		requestDispatcher.forward(request, response);
+		response.sendRedirect("students");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
