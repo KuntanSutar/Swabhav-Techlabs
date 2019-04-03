@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/delete")
 public class DeleteStudentsController extends HttpServlet {
@@ -17,17 +18,21 @@ public class DeleteStudentsController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String rollNo = request.getParameter("rollNo");
-		StudentsService studentsService = new StudentsService();
-		Student student = studentsService.getStudentByRollNo(rollNo);
-		System.out.println("Deleted Student : "+student.getName());
-		studentsService.deleteStudentDetails(student);
-		response.sendRedirect("students");
+		HttpSession session = request.getSession();
+		if(session.isNew()) {
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/login.html");
+			requestDispatcher.forward(request, response);
+		} else {
+			String rollNo = request.getParameter("rollNo");
+			StudentsService studentsService = new StudentsService();
+			Student student = studentsService.getStudentByRollNo(rollNo);
+			studentsService.deleteStudentDetails(student);
+			System.out.println("Deleted Student : "+student.getName());
+			response.sendRedirect("students");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		doGet(request, response);
 	}
 
 }

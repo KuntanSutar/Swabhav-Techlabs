@@ -11,7 +11,7 @@ public class StudentsService {
 		return studentList;
 	}
 
-	public void addStudent(Student newStudent) {
+	public void addStudentDetails(Student newStudent) {
 		studentList.add(new Student(newStudent.getName(), newStudent.getCgpa(), newStudent.getRollNo()));
 	}
 

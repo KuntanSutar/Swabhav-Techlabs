@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/add")
 public class AddStudentsController extends HttpServlet {
@@ -17,13 +18,17 @@ public class AddStudentsController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/form.jsp");
-		requestDispatcher.forward(request, response);
+		HttpSession session = request.getSession();
+		if(session.isNew()) {
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/login.html");
+			requestDispatcher.forward(request, response);
+		} else {
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/form.jsp");
+			requestDispatcher.forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		doGet(request, response);
 		String name = request.getParameter("name");
 		String cgpa = request.getParameter("cgpa");
 		String rollNo = request.getParameter("rollNo");
@@ -31,7 +36,7 @@ public class AddStudentsController extends HttpServlet {
 		
 		if(!name.equals("") && !cgpa.equals("") && !rollNo.equals("")) {
 			StudentsService studentsService = new StudentsService();
-			studentsService.addStudent(new Student(name, cgpa, rollNo));
+			studentsService.addStudentDetails(new Student(name, cgpa, rollNo));
 			response.sendRedirect("students");
 		} else {
 			request.setAttribute("name", name);
