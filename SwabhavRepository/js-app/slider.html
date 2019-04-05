@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <title> Slider With Buttons </title>
+</head>
+
+<body>
+    <input type="range" id="sliderWithButtons" min="1" max="100" value="0">
+
+    <div id="buttonsCount"></div>
+
+    <div id="buttonClickEventMessage"></div>
+
+    <div id="buttons"></div>
+
+    <script>
+        (
+            function () {
+                var slider=document.getElementById("sliderWithButtons");
+                slider.addEventListener("change", increaseButtons);
+
+                function increaseButtons() {
+
+                    var sliderData = document.querySelector("#sliderWithButtons").value;
+                    document.querySelector("#buttonsCount").innerHTML = sliderData + " buttons created!!!";
+                    document.querySelector("#buttonClickEventMessage").innerHTML = "";
+                    var buttonDisplay = document.querySelector("#buttons");
+                    buttonDisplay.innerHTML = "";
+                    for (index = 1; index <= sliderData; index++) {
+                        var button = document.createElement("BUTTON");
+                        button.setAttribute("id", index);
+                        button.addEventListener('click', buttonClick);
+                        button.innerHTML = index;
+                        button.style.height = 35;
+                        button.style.width = 35;
+                        button.style.margin = 5;
+                        buttonDisplay.appendChild(button);
+                    }
+                }
+
+                function buttonClick(event) {
+                    var index = event.srcElement.id;
+                    console.log(index);
+                    document.querySelector("#buttonClickEventMessage").innerHTML = index + " button Clicked";
+                }
+            }
+        )();
+
+    </script>
+</body>
+
+</html>

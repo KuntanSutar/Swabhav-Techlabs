@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <script>
+        "use strict"
+
+        var dataService = function () {
+            var service = {};
+            service.getData = function () {
+                return Math.random() * 10;
+            }
+            service.getDataAsync = function (cb) {
+                var r = Math.random() * 100;
+                if (r > 60) {
+                    cb("success " + r);
+                } else {
+                    cb("fail " + r);
+                }
+            }
+            service.getDataAsyncTrue = function (cb) {
+                setTimeout(function () {
+                    var r = Math.random() * 100;
+                    if (r > 60) {
+                        cb("success " + r);
+                    } else {
+                        cb("fail " + r);
+                    }
+                }, 0);
+            }
+            return service;
+        }();
+
+        var r = dataService.getData();
+        console.log(r);
+
+        dataService.getDataAsync(function (r) {
+            console.log("result " + r);
+        });
+
+        dataService.getDataAsyncTrue(function (r) {
+            console.log("result " + r);
+        });
+        console.log("End of Script!!!")
+    </script>
+</body>
+
+</html>

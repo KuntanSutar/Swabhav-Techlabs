@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="swabhav">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Services</title>
+    <script src="angular.js"></script>
+</head>
+
+<body>
+
+    <div ng-controller="firstController">
+        <form ng-submit="submit()" ng-controller="firstController">
+            First controller : <input type="text" ng-model="firstValue" ng-style="{'background-color':color}">
+        </form>
+    </div>
+
+    <br><br>
+    <hr>
+
+    <div ng-controller="secondController">
+        <form ng-submit="getValue()" ng-controller="secondController">
+            Second controller : <input type="text" ng-model="secondValue" ng-style="{'background-color':color}">
+        </form>
+    </div>
+
+    <script>
+        angular.module("swabhav", [])
+            .factory("mathService", ["$log", "$rootScope", function ($log, $rootScope) {
+
+                $log.info("Inside Service");
+                $log.info($rootScope);
+                //console.log($rootScope);
+
+                var service = {}
+
+                service.add = function (firstNumber, secondNmber) {
+                    return firstNumber + secondNmber;
+                }
+                console.log($rootScope.value);
+                let number = $rootScope.value;
+                
+                service.checkEvenNumber = function (number) {
+                    if (number % 2 == 0) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+                return service;
+            }])
+            .controller("firstController", ["$scope", "mathService", function ($scope, mathService) {
+                // console.log(mathService.evenNumber(4));
+                //  console.log(mathService.add(20, 30));
+                $scope.submit = function () {
+                    var number = $scope.firstValue;
+                    $scope.result = mathService.checkEvenNumber(number);
+
+                    if ($scope.result == true) {
+                        $scope.color = "green";
+                        console.log("Inside green");
+                    } else {
+                        console.log("Inside red");
+                        $scope.color = "red";
+                    }
+                }
+            }])
+            .controller("secondController", ["$scope", "mathService", function ($scope, mathService) {
+                //  console.log(mathService.add(20, 50));
+                $scope.getValue = function () {
+                    var number = $scope.secondValue;
+                    $scope.result = mathService.checkEvenNumber(number);
+
+                    if ($scope.result == true) {
+                        $scope.color = "green";
+                        console.log("Inside green");
+                    } else {
+                        console.log("Inside red");
+                        $scope.color = "red";
+                    }
+                }
+
+            }])
+    </script>
+</body>
+
+</html>

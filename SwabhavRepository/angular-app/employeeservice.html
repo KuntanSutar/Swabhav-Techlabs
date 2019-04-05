@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html ng-app="swabhav">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Employee Service</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="angular.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <script src="jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <style>
+    *{
+        margin: 1%;
+    }
+    </style>
+  </head>
+  <body>
+        <body ng-controller="employeeController">
+                <div class="jumbotron">
+                    <h2> Employee Form</h2>
+                </div>
+                <form action="">
+                    <div class="form-group">
+                        <label>Employee ID:</label>
+                        <input type="number" class="form-control" min="1" ng-model="temp.id" id="Id" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Employee Name:</label>
+                        <input type="text" class="form-control" ng-model="temp.name" id="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Designation:</label>
+                        <select class="form-control" id="Designation" ng-model="swabhav" ng-options="x for x in designationArray">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Manager ID:</label>
+                        <select class="form-control" id="ManagerId" ng-model="swabhav" ng-options="x for x in managerIdArray"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Joining Date:</label>
+                        <input type="date" class="form-control" id="JoiningDate">
+                    </div>
+                    <div class="form-group">
+                        <label>Salary:</label>
+                        <input type="number" class="form-control" min=10 id="Salary">
+                    </div>
+                    <div class="form-group">
+                        <label>Commision:</label>
+                        <input type="number" class="form-control" id="Commision">
+                    </div>
+                    <div class="form-group">
+                        <label>Department:</label>
+                        <select class="form-control" id="Department" ng-model="swabhav" ng-options="x for x in departmentIdArray"></select>
+                    </div>
+                    <br><br><br><br>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+                <br>
+                <br>
+            
+    <section ng-controller="employeeController">
+    
+      <label>Search</label>
+        <p><input type="text" ng-model="test.designation" placeholder="Search by designation"></p>
+        <p><input type="text" ng-model="test.name" placeholder="Search by Name"></p>
+
+      <table class="table table-striped">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Designation</th>
+          <th>Manager ID</th>
+          <th>Joining Date</th>
+          <th>Salary</th>
+          <th>Commission</th>
+          <th>Department ID</th>
+        </tr>
+
+        <tbody ng-repeat="employee in employeeObjectArray|filter:test">
+          <tr>
+            <td>{{ employee.id }}</td>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.designation }}</td>
+            <td>{{ employee.managerID }}</td>
+            <td>{{ employee.dataOfJoinig }}</td>
+            <td>{{ employee.salary }}</td>
+            <td>{{ employee.commission }}</td>
+            <td>{{ employee.departmentID }}</td>
+            <td>
+              <button type="button" ng-click="onEditClick(employee)" class="btn btn-default">
+                <i class="glyphicon glyphicon-pencil"> </i>
+              </button>
+            </td>
+            <td>
+              <button type="button" ng-click="removeRow(employee.id)" class="btn btn-default">
+                <i class="glyphicon glyphicon-trash"> </i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <script>
+      angular.module("swabhav", [])
+      .controller("employeeController", ["$scope", "$http", function($scope, $http) {
+          $scope.employeeObjectArray;
+          $scope.data;
+          var design=[];
+          var mngrId=[];
+          var departId=[];
+          $scope.designationArray;
+          $scope.managerIdArray;
+          $scope.departmentIdArray;
+          $http({
+            method: "GET",
+            url: "http://localhost/angular-app/emp.txt"
+          }).then(function(response) {
+            let employeeArray = [];
+            $scope.data = response.data.replace(/'/g, "");
+            employeeArray = response.data.split("\n");
+
+            for (var i = 0; i < employeeArray.length; i++) {
+              employeeArray[i] = employeeArray[i].replace(/\s+/g, "");
+            }
+            employeeArray = employeeArray.filter(function(value, index, self) {
+              return self.indexOf(value) === index;
+            });
+
+            console.log(employeeArray.length);
+            let employeeObjectList = [];
+            for (let j = 0; j < employeeArray.length; j++) {
+              let employeeDetailsRow = employeeArray[j].split(",");
+              let employeeObject = {
+                id: employeeDetailsRow[0],
+                name: employeeDetailsRow[1].replace(/'/g, ""),
+                designation: employeeDetailsRow[2].replace(/'/g, ""),
+                managerID: employeeDetailsRow[3],
+                dataOfJoinig: employeeDetailsRow[4].replace(/'/g, ""),
+                salary: employeeDetailsRow[5],
+                commission: employeeDetailsRow[6],
+                departmentID: employeeDetailsRow[7]
+              };
+              employeeObjectList.push(employeeObject);
+              //console.log(employeeObjectList);
+            }
+            $scope.employeeObjectArray = employeeObjectList;
+
+            for (let k = 0; k < $scope.employeeObjectArray.length; k++) {
+              design.push($scope.employeeObjectArray[k].designation);
+              mngrId.push($scope.employeeObjectArray[k].managerID);
+              departId.push($scope.employeeObjectArray[k].departmentID);
+            }
+            //console.log($scope.designation);
+            //console.log($scope.departmentId);
+            //console.log($scope.mangerId);
+            design = design.filter(function(value, index, self) {
+              return self.indexOf(value) == index;
+            });
+            //console.log(design);
+            $scope.designationArray=design;
+
+            mngrId = mngrId.filter(function(value, index, self) {
+              return self.indexOf(value) == index;
+            });
+            $scope.managerIdArray=mngrId;
+
+            departId = departId.filter(function(value, index, self) {
+              return self.indexOf(value) == index;
+            });
+            $scope.departmentIdArray=departId;
+          });
+          $scope.onEditClick = function(value) {
+            $scope.temp = value;
+            console.log($scope.temp);
+          };
+          $scope.removeRow = function(value) {
+            console.log(value);
+            var index = -1;
+            for (let i = 0; i < $scope.employeeObjectArray.length; i++) {
+              if ($scope.employeeObjectArray[i].id == value) {
+                index = i;
+                break;
+              }
+            }
+            if (index === -1) {
+              alert("Something went wrong");
+            }
+            $scope.employeeObjectArray.splice(index, 1);
+          };
+        }
+      ]);
+    </script>
+  </body>
+</html>

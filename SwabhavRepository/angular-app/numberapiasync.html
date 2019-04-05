@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="swabhav">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Number Api Asynchronous</title>
+    <script src="angular.js"></script>
+</head>
+
+<body>
+
+    <div ng-controller="firstController">
+        Enter Number :<input type="text" ng-model="number">
+        <button ng-click="getValue()">Search</button>
+        <br><br> 
+        {{number}}
+    </div>
+
+    <script>
+        angular.module("swabhav", [])
+        .factory("services", ["$log", "$q", "$http", function ($log, $q, $http) {
+            console.log("inside service");
+            var obj = {};
+
+            obj.getNumberValue = function (number) {
+
+                return $q(function (resolve, reject) {
+                    $http.get('http://numbersapi.com/' + number).then(function (response) {
+                        if (response.status == 200) {
+                            resolve(response.data);
+                        } else {
+                            reject("errroe obtained");
+                        }
+                    });
+                })
+            }
+            return obj;
+        }]).controller("firstController", ["$scope", "services", function ($scope, services) {
+            $scope.getValue = function () {
+                let num = $scope.number;
+                services.getNumberValue(num)
+                .then((r) => {
+                    console.log("excute resolve");
+                    console.log(r);
+                    $scope.number = r;
+                })
+                .catch((e) => {
+                    console.log(e);
+                    $scope.number = e;
+                })
+
+            }
+        }])   
+    </script>
+</body>
+
+</html>

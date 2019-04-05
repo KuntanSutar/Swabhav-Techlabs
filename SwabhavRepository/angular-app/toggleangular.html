@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="toggle">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="angular.js"></script>
+    <script src="jquery-3.3.1.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="bootstrap.css">
+    <script src="bootstrap.js"></script>
+    <title>Toggle Angular</title>
+</head>
+
+<body style="margin:20px">
+
+    <div class="container">
+
+        <section ng-controller="toggleController">
+            <button class="btn btn-primary" ng-click="onClickFunction()">Toggle</button>
+            <div ng-hide="detailsDisplay">
+                <img ng-src="{{spinner}}" alt="Loading"/>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        angular.module('toggle', [])
+            .controller('toggleController', function ($scope) {
+                $scope.detailsDisplay = true;
+                $scope.spinner="image1.png";
+                console.log("Inside Toggle Controller");
+                $scope.onClickFunction = function () {
+                    if($scope.detailsDisplay==false) {
+                        $scope.detailsDisplay=true;
+                        return;
+                    }
+                    if($scope.detailsDisplay==true) {
+                        $scope.detailsDisplay=false;
+                        return;
+                    }
+                }
+            });
+    </script>
+</body>
+
+</html>

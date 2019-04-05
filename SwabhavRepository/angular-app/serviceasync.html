@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="swabhavtechlabs">
+
+<head>
+    <title>Service Async</title>
+    <script src="angular.js"></script>
+</head>
+
+<body>
+    <section ng-controller="firstcontroller">
+        <h1>First Controller</h1>
+        Enter:<input type="number" ng-model="checknumber" ng-style="{'background-color':color}">
+        {{checknumber}}
+
+
+    </section>
+    
+    <script>
+        angular.module('swabhavtechlabs', [])
+            .factory('mathservice', ['$log', '$q', function ($log, $q) {
+                var obj = {};
+                obj.evenodd = function (number) {
+                    return $q(function (resolve, reject) {
+                        if (number % 2 == 0) {
+                            resolve("true");
+                        }
+                        else {
+                            reject("false");
+                        }
+                    })
+                }
+                return obj;
+            }])
+            .controller("firstcontroller", function (mathservice) {
+                mathservice.evenodd(3)
+                    .then((r) => {
+                        console.log(r);
+                    })
+                    .catch((e) => {
+                        console.log(e);
+                    })
+            })
+    </script>
+
+</body>
+
+</html>

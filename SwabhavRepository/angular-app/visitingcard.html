@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="swabhav">
+
+<head>
+    <title>Angular JS Custom Directives</title>
+    <script src="angular.js"></script>
+</head>
+
+<body>
+    <h2> Visiting Card </h2>
+    <div ng-controller="visitingCardController">
+        <visiting-card ng-repeat="index in data "></visiting-card>
+    </div>
+
+    <script>
+        angular.module("swabhav", [])
+            .directive('visitingCard', function () {
+                return {
+                    template: "Name: {{index.name}} </br> Address: {{index.address}}  </br> Mobile No :{{index.mobileNum}}</br></br>"
+                }
+            })
+            .controller('visitingCardController', function ($scope) {
+                $scope.data = [{ name: "Kuntan", address: "Goregaon", mobileNum: 9619588193 }, { name: "Kiran", address: "Jogeshwari", mobileNum: 9967774991 }];
+            })
+    </script>
+
+</body>
+
+</html>

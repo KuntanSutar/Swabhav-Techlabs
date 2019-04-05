@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Numbers API</title>
+
+</head>
+
+<body>
+    <div id="demo">
+            Enter Number:
+            <input type="number" id="textField" placeholder="Enter Number">
+            <input type="button" id="button" value="Show Number Facts">
+    </div>
+    
+    <script>
+
+        var showButton = document.getElementById("button").addEventListener('click', display);
+
+        function display() {
+            var number = document.getElementById("textField").value;
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Typical action to be performed when the document is ready:
+                    document.getElementById("demo").innerHTML = xhttp.responseText;
+                }
+            };
+            xhttp.open("GET", "http://numbersapi.com/"+number, true);
+            xhttp.send();
+        }
+
+    </script>
+</body>
+
+</html>

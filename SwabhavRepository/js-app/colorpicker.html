@@ -1,0 +1,30 @@
+<html>
+    <head>  
+        <title>
+            Color Picker
+        </title>
+    </head>
+    <body id="colorchange">
+            <select id="colorchange" onclick="changeBackgroudColor()" >
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="blue">Blue</option>
+            </select>
+
+            <script>
+                function changeBackgroudColor() {
+                    var element=document.getElementById("colorchange").value;
+
+                    if(element=="red") {
+                        document.body.style.backgroundColor="#ff3333";
+                    }
+                    if(element=="green") {
+                        document.body.style.backgroundColor="#66ff66";
+                    }
+                    if(element=="blue") {
+                        document.body.style.backgroundColor="#3333ff";
+                    }
+                }
+            </script>
+    </body>
+</html>

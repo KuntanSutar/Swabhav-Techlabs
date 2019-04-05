@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="400" height="400" ></canvas>
+
+<script>
+        
+        var canvas = document.getElementById("myCanvas"); 
+        var ctx1 = canvas.getContext("2d");     
+        ctx1.beginPath();
+        ctx1.arc(200, 200, 150, 0, 1.4*Math.PI);
+        ctx1.lineTo(200,200);
+        ctx1.lineTo(300,200); 
+        ctx1.fillStyle="#008000";
+        ctx1.fill(); 
+        ctx1.stroke();
+
+        var ctx3 = canvas.getContext("2d");
+        ctx3.font = "40px Comic Sans MS"; 
+        ctx3.fillText("70%", 20, 360);
+
+        var ctx2 = canvas.getContext("2d");    
+        ctx2.beginPath();
+        ctx2.arc(200, 200, 150, 1.4*Math.PI, 0); 
+        ctx2.lineTo(300,200); 
+        ctx2.lineTo(200,200);
+        ctx2.fillStyle="#FF0000";
+        ctx2.fill();
+        ctx2.stroke();
+
+        var ctx4 = canvas.getContext("2d");
+        ctx4.font = "40px Comic Sans MS";
+        ctx4.fillText("30%", 300, 70); 
+
+</script> 
+
+</body>
+</html>

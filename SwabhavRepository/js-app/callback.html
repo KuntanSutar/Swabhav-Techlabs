@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <input type="button" value="event" id="1">
+    
+    <script>
+        document.getElementById("1").addEventListener("click", fnOne);
+        document.getElementById("1").addEventListener("click", function() { 
+                                                            console.log("Two");
+                                                            console.log("Inside Anonymous Function")
+                                                    });
+
+        function fnOne() {
+            console.log("One");
+        }
+
+        function fnCubeEven(no, fn) {
+            if(no%2==0) {
+                fn("Solution : "+(no*no*no));
+            }
+            else {
+                fn("Error : Not Even");
+            }
+        }
+
+        function handleRequest(r) {
+            console.log("Result is "+r);
+        }
+
+        fnCubeEven(10, handleRequest);
+        fnCubeEven(25, handleRequest);
+
+        fnCubeEven(20, function(r) {
+            console.log("Inside Anonymous Function")
+            console.log("Result is "+r);
+        });
+
+
+        //var Foo="ABC";
+        setTimeout(function() { console.log("After 3 sec")}, 3000);
+        setTimeout(doSomeWork, 4000);
+
+        function doSomeWork() {
+            handleRequest("Foo")
+        }
+    </script>
+</body>
+</html>

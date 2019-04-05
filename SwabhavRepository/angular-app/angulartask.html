@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="swabhav">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="angular.js"></script>
+    <title>Angular Task</title>
+</head>
+
+<body ng-controller="angularTaskController">
+
+    <h1>Angular Task</h1>
+
+    <form ng-submit="taskAdd()">
+        Task :
+        <input type="text" ng-model="taskName" placeholder="Enter Task Here">
+        <input type="submit" value="Add">
+    </form>
+
+    <ul>
+        <li ng-repeat="task in taskList">
+            <span>{{task}}</span>
+        </li>
+    </ul>
+
+    <script>
+        angular.module('swabhav', [])
+        .controller('angularTaskController', ['$scope', function ($scope) {
+            $scope.taskList = [];
+            $scope.taskAdd = function () {
+                if($scope.taskName != "" && $scope.taskName != undefined)
+                    $scope.taskList.push($scope.taskName);
+                $scope.taskName = "";
+            };
+        }]);
+    </script>
+
+</body>
+
+</html>

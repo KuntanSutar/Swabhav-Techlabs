@@ -1,0 +1,38 @@
+<html lang="en" ng-app="swabhavtechlabs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Asyc Service</title>
+    <script src="angular.js"></script>
+</head>
+
+<body ng-controller="firstcontroller">
+    <script >
+        angular.module('swabhavtechlabs', [])
+            .service('mathservice', ['$log', '$q', function ($log, $q) {
+                this.even = (number)=> {
+                    return $q((resolve, reject)=> {
+                        if (number % 2 == 0) {
+                            resolve("true");
+                        }
+                        else {
+                            reject("false");
+                        }
+                    })
+                }
+            }])
+            .controller("firstcontroller", function (mathservice) {
+                mathservice.even(3)
+                .then((r)=>{
+                    console.log(r);
+                })
+                .catch((r)=>{
+                    console.log(r);
+                })
+            })
+    </script>
+</body>
+
+</html>

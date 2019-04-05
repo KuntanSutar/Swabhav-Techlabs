@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="swabhav">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>ng-repeat with duplicate</title>
+    <script src="angular.js"></script>
+  </head>
+  <body>
+    <!--  Duplicates in a repeater are not allowed. Use 'track by' expression to specify unique keys. 
+        Repeater: number in array, Duplicate key: number:1, Duplicate value: 1
+    <div ng-controller="ngrepeatcontroller">
+        <p ng-repeat="number in array">
+            {{number}}
+        </p>
+    </div> -->
+    <div ng-controller="ngrepeatcontroller">
+            <p ng-repeat="number in array track by $index">
+                {{number}}
+            </p>
+    </div>
+    <script>
+      angular
+        .module("swabhav", [])
+        .controller("ngrepeatcontroller", function($scope) {
+          let array = [1, 2, 3, 4, 1, 2, 3, 4];
+          $scope.array = array;
+        });
+    </script>
+  </body>
+</html>

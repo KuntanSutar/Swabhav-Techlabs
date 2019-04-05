@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="swabhav">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Filter</title>
+    <script src="angular.js"></script>
+  </head>
+
+  <body>
+    <section ng-controller="salaryController">
+      <p style="color:{{ salary | colorSalary }}">{{ salary }}</p>
+    </section>
+
+    <section ng-init="discription='involving substitution at or characterized by two opposite positions'">
+      <p>{{ discription | changeSummary }}</p>
+    </section>
+
+    <script>
+      angular
+        .module("swabhav", [])
+        .filter("colorSalary", function() {
+          return function(salary) {
+            if (salary > 20000) {
+              return "green";
+            } if (salary < 20000) {
+              return "green";
+            } else {
+              return "blue";
+            }
+          };
+        })
+        .filter("changeSummary", function() {
+          return function(item) {
+            if (item.length > 50) {
+              item = item.substr(0, 50);
+              return item + "...";
+            } else {
+              return item;
+            }
+          };
+        })
+        .controller("salaryController", [
+          "$scope",
+          function($scope) {
+            $scope.salary = 10000;
+          }
+        ]);
+    </script>
+  </body>
+</html>
