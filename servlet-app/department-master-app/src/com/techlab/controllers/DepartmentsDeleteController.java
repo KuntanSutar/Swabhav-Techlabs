@@ -1,8 +1,8 @@
 package com.techlab.controllers;
 
+import java.util.List;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,25 +15,26 @@ import com.techlab.model.Department;
 import com.techlab.repository.DepartmentsRepository;
 import com.techlab.service.DepartmentsService;
 
-@WebServlet("/departments")
-public class DepartmentsController extends HttpServlet {
-       
-    public DepartmentsController() {
+@WebServlet("/delete")
+public class DepartmentsDeleteController extends HttpServlet {
+	
+    public DepartmentsDeleteController() {
+        super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		try {
-			DepartmentsRepository departmentsRepository = new DepartmentsRepository();
-			DepartmentsService departmentsService = new DepartmentsService(departmentsRepository);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	try {
+			DepartmentsService departmentsService = new DepartmentsService(new DepartmentsRepository());
+			int deptNo = Integer.parseInt(request.getParameter("deptNo"));
+			Department department = departmentsService.getDepartmentByNumber(deptNo);
+			departmentsService.delete(department);
 			List<Department> departmentList = departmentsService.getDepartments();
 			request.setAttribute("departmentList", departmentList);
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/departments.jsp");
-			requestDispatcher.forward(request, response);
-		} catch (SQLException | ClassNotFoundException e) {
+			response.sendRedirect("departments");
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-	}
+    }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}

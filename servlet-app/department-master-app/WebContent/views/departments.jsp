@@ -18,10 +18,10 @@
 		out.print("<table border='2px'>");
 		out.print("<tr><th>DEPTNO</th><th>DNAME</th><th>LOC</th><th>EDIT</th><th>DELETE</th></tr>");
 		for (Department department : departmentList) {
-			out.print("<tr><td>" + department.getDeptNo() + "</td><td>" + department.getDeptName() + "</td><td>"
-					+ department.getLocation() + "</td>");
-			out.print("<td><a href="+"edit?deptNo="+department.getDeptNo()+">Edit</a></td>");
-			out.print("<td><a href="+"delete?rollNo="+department.getDeptNo()+">Delete</a></td></tr>");
+			out.print("<tr><td>" + department.getNumber() + "</td><td>" + department.getName() + "</td><td>"
+			+ department.getLocation() + "</td>");
+			out.print("<td><a href="+"edit?deptNo="+department.getNumber()+">Edit</a></td>");
+			out.print("<td><a href="+"delete?deptNo="+department.getNumber()+">Delete</a></td></tr>");
 		}
 		out.print("</table>");
 	%>

@@ -17,10 +17,10 @@ import com.techlab.repository.DepartmentsRepository;
 import com.techlab.service.DepartmentsService;
 
 @WebServlet("/home")
-public class DeptHomeController extends HttpServlet {
+public class DepartmentsHomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public DeptHomeController() {
+    public DepartmentsHomeController() {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

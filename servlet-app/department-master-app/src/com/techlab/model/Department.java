@@ -2,30 +2,30 @@ package com.techlab.model;
 
 public class Department {
 
-	private int deptNo;
-	private String deptName;
+	private int number;
+	private String name;
 	private String location;
 	
 	public Department(int deptNo, String deptName, String location) {
-		this.deptNo = deptNo;
-		this.deptName = deptName;
+		this.number = deptNo;
+		this.name = deptName;
 		this.location = location;
 	}
 
-	public int getDeptNo() {
-		return deptNo;
+	public int getNumber() {
+		return number;
 	}
 
-	public void setDeptNo(int deptNo) {
-		this.deptNo = deptNo;
+	public void setNumber(int deptNo) {
+		this.number = deptNo;
 	}
 
-	public String getDeptName() {
-		return deptName;
+	public String getName() {
+		return name;
 	}
 
-	public void setDeptName(String deptName) {
-		this.deptName = deptName;
+	public void setName(String deptName) {
+		this.name = deptName;
 	}
 
 	public String getLocation() {
@@ -35,6 +35,5 @@ public class Department {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	
 	
 }

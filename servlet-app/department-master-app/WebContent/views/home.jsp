@@ -10,7 +10,5 @@
 	<h1>Department Master App</h1>
 	<a href="departments">View Departments</a> <br>
 	<a href="add">Add Department</a> <br>
-	<a href="edit">Edit Department</a> <br>
-	<a href="delete">Delete Department</a> <br>
 </body>
 </html>

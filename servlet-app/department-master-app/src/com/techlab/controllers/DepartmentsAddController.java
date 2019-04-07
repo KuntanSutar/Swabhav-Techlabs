@@ -15,27 +15,33 @@ import com.techlab.model.Department;
 import com.techlab.repository.DepartmentsRepository;
 import com.techlab.service.DepartmentsService;
 
-@WebServlet("/departments")
-public class DepartmentsController extends HttpServlet {
+@WebServlet("/add")
+public class DepartmentsAddController extends HttpServlet {
        
-    public DepartmentsController() {
+    public DepartmentsAddController() {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/addForm.jsp");
+		requestDispatcher.forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int deptNo = Integer.parseInt(request.getParameter("deptNo"));
+		String deptName = request.getParameter("deptName");
+		String deptLocation = request.getParameter("deptLocation");
+		Department department = new Department(deptNo, deptName, deptLocation);
 		try {
-			DepartmentsRepository departmentsRepository = new DepartmentsRepository();
-			DepartmentsService departmentsService = new DepartmentsService(departmentsRepository);
+			DepartmentsService departmentsService = new DepartmentsService(new DepartmentsRepository());
+			departmentsService.add(department);
 			List<Department> departmentList = departmentsService.getDepartments();
 			request.setAttribute("departmentList", departmentList);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/departments.jsp");
 			requestDispatcher.forward(request, response);
-		} catch (SQLException | ClassNotFoundException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 
 }

@@ -27,7 +27,7 @@ public class SessionServlet extends HttpServlet {
 			count++;
 		}
 		response.setContentType("text/html");
-		request.getSession().setAttribute("visitCount", count);
+		session.setAttribute("visitCount", count);
 		PrintWriter printWriter = response.getWriter();
 		printWriter.print("Session ID : "+session.getId()+"<br>");
 		printWriter.print("Old Count : "+(count-1)+"<br>");

@@ -18,7 +18,20 @@ public class DepartmentsService {
 		return departmentsRepository.getDepartments();
 	}
 	
-	public void addDepartments(Department department) throws SQLException {
-		boolean addDepartment = departmentsRepository.addDepartment(department);
+	public void add(Department department) throws SQLException {
+		boolean addDepartmentResult = departmentsRepository.add(department);
 	}
+	
+	public void update(Department department) throws SQLException {
+		departmentsRepository.update(department);
+	}
+
+	public void delete(Department department) throws SQLException {
+		departmentsRepository.delete(department);
+	}
+	
+	public Department getDepartmentByNumber(int deptNo) throws SQLException {
+		return departmentsRepository.getDepartmentByNumber(deptNo);
+	}
+	
 }
