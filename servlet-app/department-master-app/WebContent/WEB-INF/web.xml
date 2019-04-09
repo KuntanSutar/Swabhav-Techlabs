@@ -4,4 +4,14 @@
   <welcome-file-list>
     <welcome-file>views/index.html</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>Dep</display-name>
+    <servlet-name>Dep</servlet-name>
+    <servlet-class>com.techlab.controllers.DepartmentsAddController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Dep</servlet-name>
+    <url-pattern>/Dep</url-pattern>
+  </servlet-mapping>
 </web-app>

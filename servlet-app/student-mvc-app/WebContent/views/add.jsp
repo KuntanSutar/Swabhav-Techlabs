@@ -9,9 +9,9 @@
 <body>
 
 	<form action="add" method="POST">
-		Name : <input type="text" name="name" value="${requestScope.name}" placeholder="Enter Name"> <br>
-		CGPA : <input type="text" name="cgpa" value="${requestScope.cgpa}" placeholder="Enter CGPA"> <br>
-		Roll Number : <input type="text" name="rollNo" value="${requestScope.rollNo}" placeholder="Enter Roll Number"> <br>
+		Name : <input type="text" name="name" value="${requestScope.name}" placeholder="Enter Name" required="required"> <br>
+		CGPA : <input type="text" name="cgpa" value="${requestScope.cgpa}" placeholder="Enter CGPA" required="required"> <br>
+		Roll Number : <input type="text" name="rollNo" value="${requestScope.rollNo}" placeholder="Enter Roll Number" required="required"> <br>
 		<input type="submit" value="Add Student"> <br>
 	</form>
 	<br>
