@@ -14,25 +14,26 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
        
-	
-	private static boolean isLogIn = false;
-	
     public LoginController() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/login.html");
 		requestDispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		if(username.equals(password)) {
 			HttpSession session = request.getSession();
-			isLogIn = true;
-			response.sendRedirect("students");
+			System.out.println(" Login Session : "+session.getId());
+			session.setAttribute("user", username);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/index.html");
+			requestDispatcher.forward(request, response);
 		} else {
 			request.setAttribute("username", request.getParameter("username"));
 			request.setAttribute("password", request.getParameter("password"));
@@ -41,8 +42,4 @@ public class LoginController extends HttpServlet {
 		}
 	}
 	
-	public boolean getLogStatus() {
-		return isLogIn;
-	}
-
 }

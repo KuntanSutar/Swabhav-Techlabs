@@ -16,9 +16,12 @@ public class LogoutController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		HttpSession session = request.getSession(false);
+		System.out.println(" Logout Session : "+session.getId());
 		if(session!=null) {
 			session.invalidate();
+			session=null;
 			System.out.println("User Logout");
 			response.sendRedirect("http://localhost:8080/student-mvc-app/");
 		} 

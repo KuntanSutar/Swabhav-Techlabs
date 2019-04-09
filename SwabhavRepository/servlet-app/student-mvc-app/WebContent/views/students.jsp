@@ -24,7 +24,7 @@
 		out.print("</table>");
 	%>
 	<br>
-	<a href="http://localhost:9090/student-mvc-app/WebContent/views/index.html">Home Page</a>
+	<a href="http://localhost:8080/student-mvc-app/">Home Page</a>
 	<a href="add">Add Student</a>
 	<a href="logout">Log Out</a>
 </body>

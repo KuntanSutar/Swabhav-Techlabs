@@ -15,6 +15,6 @@
 		<input type="submit" value="Add Student"> <br>
 	</form>
 	<br>
-	<a href="http://localhost:9090/student-mvc-app/">Home Page</a>
+	<a href="http://localhost:8080/student-mvc-app/">Home Page</a>
 </body>
 </html>

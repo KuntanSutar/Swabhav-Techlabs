@@ -18,14 +18,15 @@ public class AddStudentsController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		HttpSession session = request.getSession();
-		
-		LoginController controller = new LoginController();
-		if(!controller.getLogStatus()) {
+
+		HttpSession session = request.getSession(false);
+		System.out.println("Add Students Session : "+session);
+		if(session==null || session.getAttribute("user")==null) {
+			
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/login.html");
 			requestDispatcher.forward(request, response);
 		} else {
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/form.jsp");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/add.jsp");
 			requestDispatcher.forward(request, response);
 		}
 	}
@@ -44,7 +45,7 @@ public class AddStudentsController extends HttpServlet {
 			request.setAttribute("name", name);
 			request.setAttribute("cgpa", cgpa);
 			request.setAttribute("rollNo", rollNo);
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/form.jsp");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/add.jsp");
 			requestDispatcher.forward(request, response);
 		}
 	}
