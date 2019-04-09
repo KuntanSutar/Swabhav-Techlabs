@@ -19,8 +19,9 @@ public class EditStudentsController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
-		if(session.isNew()) {
+		HttpSession session = request.getSession(false);
+		System.out.println("Edit Students Session : "+session);
+		if(session==null || session.getAttribute("user")==null) {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/login.html");
 			requestDispatcher.forward(request, response);
 		} else {
@@ -31,7 +32,7 @@ public class EditStudentsController extends HttpServlet {
 			request.setAttribute("name", student.getName());
 			request.setAttribute("cgpa", student.getCgpa());
 			request.setAttribute("rollNo", student.getRollNo());
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/display.jsp");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/edit.jsp");
 			requestDispatcher.forward(request, response);
 		}
 	}

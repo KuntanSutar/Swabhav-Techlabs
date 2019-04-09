@@ -1,1 +1,0 @@
-var studentModule = angular.module("swabhav-spa-app",['ngRoute']);
