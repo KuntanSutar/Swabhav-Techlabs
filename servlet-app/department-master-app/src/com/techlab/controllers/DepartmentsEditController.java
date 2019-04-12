@@ -23,21 +23,8 @@ public class DepartmentsEditController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	int deptNo = Integer.parseInt(request.getParameter("deptNo"));
-    	System.out.println(deptNo);
-    	try {
-			DepartmentsService departmentsService = new DepartmentsService(new DepartmentsRepository());
-			Department department = departmentsService.getDepartmentByNumber(deptNo);
-			System.out.println("Edit Department : "+department.getName());
-			request.setAttribute("deptNo", department.getNumber());
-			request.setAttribute("deptName", department.getName());
-			request.setAttribute("deptLocation", department.getLocation());
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("views/editForm.jsp");
-			requestDispatcher.forward(request, response);
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
-    	
+    	doGet(request,response,request.getParameter("deptNo"));
+   
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response,String url) throws ServletException, IOException {

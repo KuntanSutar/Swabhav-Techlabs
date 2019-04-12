@@ -34,6 +34,11 @@ public class LoginController extends HttpServlet {
 			System.out.println(" Login Session : "+session.getId());
 			session.setAttribute("user", username);
 			System.out.println(url);
+			if(url==null) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("views/home.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
 			if(url.endsWith("add")) {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("views/addForm.jsp");
 				dispatcher.forward(request, response);
@@ -43,9 +48,7 @@ public class LoginController extends HttpServlet {
 				System.out.println(URL[0]);
 				DepartmentsEditController controller = new DepartmentsEditController();
 				controller.doGet(request, response, URL[0]);
-				
 			}
-			
 			return;
 		} else {
 			request.setAttribute("username", request.getParameter("username"));
