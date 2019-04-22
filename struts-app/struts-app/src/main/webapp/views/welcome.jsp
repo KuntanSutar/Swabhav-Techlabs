@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Home</title>
+<title>Welcome</title>
 </head>
 <body>
-	<h1><s:property value="message"/></h1>
+	<h1><s:property value="result"/></h1>
 </body>
 </html>
