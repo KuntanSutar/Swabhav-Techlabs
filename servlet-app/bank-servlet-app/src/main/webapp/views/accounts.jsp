@@ -13,13 +13,17 @@
 	<h1>Account Details</h1>
 	<%
 		ArrayList<Account> accountList = (ArrayList) request.getAttribute("accountList");
-		out.print("<table border='2px'>");
-		out.print("<tr><th>USERNAME</th><th>BALANCE</th><th>PASSWORD</th></tr>");
-		for (Account account : accountList) {
-			out.print("<tr><td>" + account.getName() + "</td><td>" + account.getBalance() + "</td><td>"
-					+ account.getPassword() + "</td></tr>");
+		if(accountList!=null) {
+			out.print("<table border='2px'>");
+			out.print("<tr><th>USERNAME</th><th>BALANCE</th><th>PASSWORD</th></tr>");
+			for (Account account : accountList) {
+				out.print("<tr><td>" + account.getName() + "</td><td>" + account.getBalance() + "</td><td>"
+						+ account.getPassword() + "</td></tr>");
+			}
+			out.print("</table>");
+		} else {
+			out.print("No records found!");
 		}
-		out.print("</table>");
 	%>
 </body>
 </html>

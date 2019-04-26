@@ -5,7 +5,6 @@ import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +13,6 @@ import com.techlab.business.Account;
 import com.techlab.repository.AccountsRepository;
 import com.techlab.service.AccountService;
 
-@WebServlet("/register")
 public class RegisterController extends HttpServlet {
 
 	public RegisterController() {
@@ -22,7 +20,7 @@ public class RegisterController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("register.html");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("views/register.html");
 		dispatcher.forward(request, response);
 	}
 
@@ -30,6 +28,7 @@ public class RegisterController extends HttpServlet {
 		String username = request.getParameter("username");
 		int balance = Integer.parseInt(request.getParameter("balance"));
 		String password = request.getParameter("password");
+		System.out.println("Register controller post");
 		try {
 			AccountsRepository repository = new AccountsRepository();
 			AccountService service = new AccountService(repository);
@@ -37,7 +36,7 @@ public class RegisterController extends HttpServlet {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher("accounts.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("views/accounts.jsp");
 		dispatcher.forward(request, response);
 	}
 
