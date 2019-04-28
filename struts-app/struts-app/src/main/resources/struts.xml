@@ -10,5 +10,16 @@
     	<action name="welcome" class="com.techlab.action.WelcomeAction">
     		<result name="success">views/welcome.jsp</result>
     	</action>
+    	<action name="add" class="com.techlab.action.AddContactAction">
+    		<result name="success">views/add.jsp</result>
+    		<result name="input">views/add.jsp</result>
+    	</action>
+    	<action name="add.do" class="com.techlab.action.AddContactAction" method="executeDo">
+    		<result name="success">views/home.jsp</result>
+    		<result name="input">views/add.jsp</result>
+    	</action>
+    	<action name="display" class="com.techlab.action.DisplayContactAction">
+    		<result name="success">views/display.jsp</result>
+    	</action>
     </package>
 </struts>

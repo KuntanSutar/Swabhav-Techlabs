@@ -22,17 +22,51 @@ public class AccountsRepository {
 		accountList = new ArrayList<Account>();
 		Class.forName("com.mysql.jdbc.Driver");
 		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/swabhav", "root", "root");
-		connection.setAutoCommit(false);
 	}
 
 	public boolean addAccount(Account account) throws SQLException {
-		PreparedStatement preparedStatement = connection.prepareStatement("insert into account values(?,?,?)");
-		preparedStatement.setString(1, account.getName());
-		preparedStatement.setInt(2, account.getBalance());
-		preparedStatement.setString(3, account.getPassword());
-		return preparedStatement.execute();
+		if(account!=null) {
+			PreparedStatement preparedStatement = connection.prepareStatement("insert into account values(?,?,?)");
+			preparedStatement.setString(1, account.getName());
+			preparedStatement.setInt(2, account.getBalance());
+			preparedStatement.setString(3, account.getPassword());
+			return preparedStatement.execute();
+		} else {
+			return false;
+		}
 	}
 
+	public boolean registerAccount(Account account) throws SQLException {
+		if(account!=null) {
+			connection.setAutoCommit(false);
+			PreparedStatement preparedStatement = connection.prepareStatement("insert into account values(?,?,?)");
+			preparedStatement.setString(1, account.getName());
+			preparedStatement.setInt(2, account.getBalance());
+			preparedStatement.setString(3, account.getPassword());
+			
+			Date date = new Date();  
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+		    String stringDate = formatter.format(date);  
+		    
+		    PreparedStatement statement = connection.prepareStatement("insert into transaction values(?,?,?,?)");
+		    statement.setString(1, account.getName());
+		    statement.setInt(2, account.getBalance());
+		    statement.setString(3, "Deposit");
+		    statement.setString(4, stringDate);
+		    try {
+		    	preparedStatement.execute();
+			    statement.execute();
+			    connection.commit();
+		    } catch (Exception e) {
+		    	connection.rollback();
+		    	System.out.println("Transaction Rollback");
+		    }
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public List<Account> getAccounts() throws SQLException {
 
 		Statement statement = connection.createStatement();
@@ -47,54 +81,82 @@ public class AccountsRepository {
 		return accountList;
 	}
 
-	/*
-	 * public int getBalance() throws SQLException {
-	 * 
-	 * Statement statement = connection.createStatement(); ResultSet resultSet =
-	 * statement.executeQuery("select balance from account where name='a';"); int
-	 * balance = resultSet.getInt("balance"); return balance; }
-	 */
+	public void deposite(Account account,int amount) throws SQLException {
 
-	public void deposite(int amount) throws SQLException {
-
-		/*PreparedStatement preparedStatement = connection
-				.prepareStatement("update account set balance = balance + " + amount + "where name = 'a'");*/
-		Date date = new Date();  
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
-	    String stringDate = formatter.format(date);  
-		PreparedStatement preparedStatement1 = connection
-				.prepareStatement("update account set balance = balance + " + amount + " where name = = 'a'");
-		PreparedStatement preparedStatement2 = connection
-				.prepareStatement("insert into transaction values ('a',"+amount+",'deposite','"+stringDate+"')");
-		System.out.println("insert into transaction values ('a',"+amount+",'deposite','"+stringDate+"'");
-		try {
-			preparedStatement1.execute();
-			preparedStatement2.execute();
-			connection.commit();
-		} catch (Exception e) {
-			connection.rollback();
-			System.out.println("Transaction Reverted");
+		if(account!=null) {
+			connection.setAutoCommit(false);
+			PreparedStatement statement1 = connection.prepareStatement("update account set balance=? where username=?");
+			statement1.setInt(1, account.getBalance()+amount);
+			statement1.setString(2, account.getName());
+			Date date = new Date();  
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+		    String stringDate = formatter.format(date);  
+		    PreparedStatement statement2 = connection.prepareStatement("insert into transaction values(?,?,?,?)");
+			statement2.setString(1, account.getName());
+			statement2.setInt(2, account.getBalance());
+			statement2.setString(3, "Deposite");
+			statement2.setString(4, stringDate);
+			try {
+				statement1.execute();
+				statement2.execute();
+				connection.commit();
+			} catch (Exception e) {
+				connection.rollback();
+				System.out.println("Transaction Rollback");
+			}
 		}
 	}
 
-	public void withdraw(int amount) throws SQLException {
+	public void withdraw(Account account, int amount) throws SQLException {
 
-		Date date = new Date();  
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
-	    String stringDate = formatter.format(date);  
-		PreparedStatement preparedStatement1 = connection
-				.prepareStatement("update account set balance = balance - " + amount + " where name = 'a'");
-		PreparedStatement preparedStatement2 = connection
-				.prepareStatement("insert into transaction values ('a',"+amount+",'withdraw','"+stringDate+"')");
-		System.out.println("insert into transaction values ('a',"+amount+",'withdraw','"+stringDate+"')");
-		
-		try {
-			preparedStatement1.execute();
-			preparedStatement2.execute();
-			connection.commit();
-		} catch (Exception e) {
-			connection.rollback();
-			System.out.println("Transaction Reverted");
+		if(account!=null) {
+			connection.setAutoCommit(false);
+			PreparedStatement statement1 = connection.prepareStatement("update account set balance=? where username=?");
+			statement1.setInt(1, account.getBalance()-amount);
+			statement1.setString(2, account.getName());
+			Date date = new Date();  
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");  
+		    String stringDate = formatter.format(date);  
+		    PreparedStatement statement2 = connection.prepareStatement("insert into transaction values(?,?,?,?)");
+			statement2.setString(1, account.getName());
+			statement2.setInt(2, account.getBalance());
+			statement2.setString(3, "Withdraw");
+			statement2.setString(4, stringDate);
+			try {
+				statement1.executeUpdate();
+				statement2.execute();
+				connection.commit();
+			} catch (Exception e) {
+				connection.rollback();
+				System.out.println("Transaction Rollback");
+			}
 		}
 	}
+	
+	public Account getAccount(String name) throws SQLException {
+		PreparedStatement statement = connection.prepareStatement("select * from account where username=?");
+		statement.setString(1, name);
+		ResultSet resultSet = statement.executeQuery();
+		System.out.println(resultSet);
+		Account account=null;
+		while(resultSet.next()) {
+			account = new Account(resultSet.getString(1), resultSet.getInt(2), resultSet.getString(3));
+		}
+		return account;
+	}
+	
+	public List<Transaction> getTransactions(String name) throws SQLException {
+		PreparedStatement statement = connection.prepareStatement("select * from transaction where name=?");
+		statement.setString(1, name);
+		ResultSet resultSet = statement.executeQuery();
+		Transaction transaction = null;
+		List<Transaction> transactionList = new ArrayList<Transaction>();
+		while(resultSet.next()) {
+			transaction = new Transaction(resultSet.getString(1), resultSet.getInt(2), resultSet.getString(3), resultSet.getString(4));
+			transactionList.add(transaction);
+		}
+		return transactionList;
+	}
+	
+	
 }
