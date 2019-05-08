@@ -11,10 +11,10 @@ public class ContactService {
 	
 	public ContactService() {
 		
-		Contact contact1 = new Contact("ABC", "abc@gmail.com");
-		Contact contact2 = new Contact("XYZ", "xyz@gmail.com");
-		contactList.add(contact1);
-		contactList.add(contact2);
+//		Contact contact1 = new Contact("ABC", "abc@gmail.com");
+//		Contact contact2 = new Contact("XYZ", "xyz@gmail.com");
+//		contactList.add(contact1);
+//		contactList.add(contact2);
 	}
 	
 	public void addContact(Contact contact) {
@@ -23,7 +23,7 @@ public class ContactService {
 	}
 
 	public List<Contact> getContactList() {
-		System.out.println("got contact list");
+//		System.out.println("Got contact list");
 		return contactList;
 	}
 	
