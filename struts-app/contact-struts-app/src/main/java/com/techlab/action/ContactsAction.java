@@ -3,10 +3,11 @@ package com.techlab.action;
 import java.util.List;
 
 import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionSupport;
 import com.techlab.business.Contact;
 import com.techlab.service.ContactService;
 
-public class DisplayContactAction implements Action {
+public class ContactsAction extends ActionSupport {
 
 	private ContactService service = new ContactService();
 	private List<Contact> contactList;

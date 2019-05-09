@@ -7,25 +7,9 @@ import com.techlab.service.ContactService;
 public class AddContactAction extends ActionSupport {
 
 	private Contact contact = new Contact();
-	private String name = "dummy";
-	private String email = "dummy";
+	private String name = new String();
+	private String email = new String();
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
 	public Contact getContact() {
 		return contact;
 	}
@@ -36,27 +20,30 @@ public class AddContactAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
-//		contact.setName("Kuntan Sutar");
-//		contact.setEmail("sutarkuntan@gmail.com");
-		System.out.println("execute called");
+		// contact.setName("Kuntan Sutar");
+		// contact.setEmail("sutarkuntan@gmail.com");
+		System.out.println("add execute called");
 		return SUCCESS;
 	}
 
 	public String executeDo() {
-		System.out.println("executeDo called");
+
+		System.out.println("add executeDo called");
 		System.out.println(contact.getName() + "..." + contact.getEmail());
 		ContactService service = new ContactService();
-		service.addContact(contact);
+		service.add(contact);
 		return SUCCESS;
 	}
 
 	public void validate() {
+		System.out.println(
+				"In validate " + name.hashCode() + " " + name.length() + " " + email.hashCode() + " " + email.length());
 		System.out.println("validate called");
-		if (name == null || name.trim().equals("")) {
-			addFieldError("name", "name is required");
+		if (name==null) {
+			addFieldError("contact.name", "name is required");
 		}
-		if (email == null || email.trim().equals("")) {
-			addFieldError("email", "email is required");
+		if (email==null) {
+			addFieldError("contact.email", "email is required");
 		}
 	}
 }
