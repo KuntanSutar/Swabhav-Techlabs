@@ -20,7 +20,7 @@ public class RegisterController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("views/register.html");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("views/register.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -30,9 +30,10 @@ public class RegisterController extends HttpServlet {
 		String password = request.getParameter("password");
 		System.out.println("Register controller post");
 		try {
-			AccountsRepository repository = new AccountsRepository();
+			AccountsRepository repository = AccountsRepository.getInstance();
 			AccountService service = new AccountService(repository);
-			service.addAccount(new Account(username, balance, password));
+			service.register(new Account(username, balance, password));
+			request.setAttribute("accountList", service.getAccounts());
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

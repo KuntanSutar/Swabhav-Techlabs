@@ -26,7 +26,7 @@ public class PassbookController extends HttpServlet {
 			String username = (String) session.getAttribute("username");
 			AccountService service=null;
 			try {
-				service = new AccountService(new AccountsRepository());
+				service = new AccountService(AccountsRepository.getInstance());
 				List<Transaction> transactionList = service.getTransactions(username);
 				request.setAttribute("transactions", transactionList);
 			} catch (SQLException | ClassNotFoundException e) {
@@ -34,7 +34,7 @@ public class PassbookController extends HttpServlet {
 			}
 			request.getRequestDispatcher("views/passbook.jsp").forward(request, response);
 		} else {
-			request.getRequestDispatcher("views/login").forward(request, response);
+			request.getRequestDispatcher("views/login.jsp").forward(request, response);
 		}
 	}
 

@@ -1,5 +1,9 @@
 package com.techlab.action;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.techlab.business.Contact;
 import com.techlab.service.ContactService;
@@ -9,6 +13,7 @@ public class DeleteContactAction extends ActionSupport {
 	private Contact contact = new Contact();
 	private String name = new String();
 	private String email = new String();
+	
 	public Contact getContact() {
 		return contact;
 	}
@@ -33,11 +38,11 @@ public class DeleteContactAction extends ActionSupport {
 		// contact.setName("Kuntan Sutar");
 		// contact.setEmail("sutarkuntan@gmail.com");
 		System.out.println("delete execute called");
-		System.out.println("delete execute "+name+" "+email);
-		ContactService service = new ContactService();
+		System.out.println("delete execute "+name);
+		ContactService service = ContactService.getInstance();
 		service.delete(name);
-//		name=contact.getName();
-//		email=contact.getEmail();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.setAttribute("contactList", service.getContactList());
 		return SUCCESS;
 	}
 	

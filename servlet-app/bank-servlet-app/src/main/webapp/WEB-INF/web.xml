@@ -46,6 +46,13 @@
 		<servlet-name>PassbookController</servlet-name>
 		<servlet-class>com.techlab.controller.PassbookController</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>AccountsController</display-name>
+		<servlet-name>AccountsController</servlet-name>
+		<servlet-class>com.techlab.controller.AccountsController</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>HomeController</servlet-name>
@@ -68,6 +75,10 @@
 	<servlet-mapping>
 		<servlet-name>PassbookController</servlet-name>
 		<url-pattern>/passbook</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AccountsController</servlet-name>
+		<url-pattern>/accounts</url-pattern>
 	</servlet-mapping>
 
 </web-app>

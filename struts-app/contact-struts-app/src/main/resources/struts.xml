@@ -11,11 +11,11 @@
     	</action>
     	
     	<action name="add.do" class="com.techlab.action.AddContactAction" method="executeDo">
-    		<result name="success">index.html</result>
+    		<result name="success">views/contacts.jsp</result>
     		<result name="input">views/add.jsp</result>
     	</action>
     	
-    	<action name="display" class="com.techlab.action.ContactsAction">
+    	<action name="contacts" class="com.techlab.action.ContactsAction">
     		<result name="success">views/contacts.jsp</result>
     	</action>
     	
@@ -25,13 +25,12 @@
     	</action>
     	
     	<action name="edit.do" class="com.techlab.action.EditContactAction" method="executeDo">
-    		<result name="success">views/home.jsp</result>
+    		<result name="success">views/contacts.jsp</result>
     		<result name="input">views/edit.jsp</result>
     	</action>
     	
     	<action name="delete" class="com.techlab.action.DeleteContactAction" method="execute">
     		<result name="success">views/contacts.jsp</result>
-    		<result name="input">views/contacts.jsp</result>
     	</action>
     </package>
 </struts>

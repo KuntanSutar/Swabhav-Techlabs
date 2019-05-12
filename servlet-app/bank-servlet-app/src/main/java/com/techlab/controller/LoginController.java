@@ -23,7 +23,7 @@ public class LoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("views/login.html");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("views/login.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -34,7 +34,7 @@ public class LoginController extends HttpServlet {
 		String password = request.getParameter("password");
 		AccountService service;
 		try {
-			service = new AccountService(new AccountsRepository());
+			service = new AccountService(AccountsRepository.getInstance());
 			//Account account = service.getAccount(username);
 			if (username.equals(password)) {
 				HttpSession session = request.getSession(true);

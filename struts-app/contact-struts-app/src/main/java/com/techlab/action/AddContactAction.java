@@ -1,5 +1,11 @@
 package com.techlab.action;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.techlab.business.Contact;
 import com.techlab.service.ContactService;
@@ -7,8 +13,22 @@ import com.techlab.service.ContactService;
 public class AddContactAction extends ActionSupport {
 
 	private Contact contact = new Contact();
-	private String name = new String();
-	private String email = new String();
+	private String name;
+	private String email;
+	private static boolean firstTime;
+	private int totalContacts;
+	
+	public int getTotalContacts() {
+		return totalContacts;
+	}
+
+	public void setTotalContacts(int totalContacts) {
+		this.totalContacts = totalContacts;
+	}
+
+	static {
+		firstTime = true;
+	}
 
 	public Contact getContact() {
 		return contact;
@@ -23,6 +43,7 @@ public class AddContactAction extends ActionSupport {
 		// contact.setName("Kuntan Sutar");
 		// contact.setEmail("sutarkuntan@gmail.com");
 		System.out.println("add execute called");
+		System.out.println();
 		return SUCCESS;
 	}
 
@@ -30,20 +51,35 @@ public class AddContactAction extends ActionSupport {
 
 		System.out.println("add executeDo called");
 		System.out.println(contact.getName() + "..." + contact.getEmail());
-		ContactService service = new ContactService();
+		ContactService service = ContactService.getInstance();
 		service.add(contact);
+		System.out.println();
+		List<Contact> contactList=service.getContactList();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.setAttribute("contactList", contactList);
+		totalContacts=contactList.size();
+		firstTime = true;
 		return SUCCESS;
 	}
 
 	public void validate() {
-		System.out.println(
-				"In validate " + name.hashCode() + " " + name.length() + " " + email.hashCode() + " " + email.length());
-		System.out.println("validate called");
-		if (name==null) {
-			addFieldError("contact.name", "name is required");
+		System.out.println("validating " + name + " " + email);
+		System.out.println("validating " + contact.getName() + " " + contact.getEmail());
+		if (firstTime == false) {
+//			System.out.println(
+//					"in validate " + name.hashCode() + " " + name.length() + " " + email.hashCode() + " " + email.length());
+			System.out.println("validate called");
+			if (name == null) {
+				if (contact.getName().equals("")) {
+					addFieldError("contact.name", "Name is required");
+				}
+			}
+			if (email == null) {
+				if (contact.getEmail().equals("")) {
+					addFieldError("contact.email", "Email is required");
+				}
+			}
 		}
-		if (email==null) {
-			addFieldError("contact.email", "email is required");
-		}
+		firstTime = false;
 	}
 }

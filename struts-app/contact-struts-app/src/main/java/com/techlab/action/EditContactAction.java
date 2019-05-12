@@ -1,5 +1,9 @@
 package com.techlab.action;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.techlab.business.Contact;
 import com.techlab.service.ContactService;
@@ -7,8 +11,8 @@ import com.techlab.service.ContactService;
 public class EditContactAction extends ActionSupport {
 
 	private Contact contact = new Contact();
-	private String name = new String();
-	private String email = new String();
+	private String name;
+	private String email;
 	
 	public Contact getContact() {
 		return contact;
@@ -50,9 +54,11 @@ public class EditContactAction extends ActionSupport {
 	public String executeDo() {
 
 		System.out.println("edit executeDo called");
-		System.out.println("edit executeDo"+contact.getName() + "..." + contact.getEmail());
-		ContactService service = new ContactService();
+		System.out.println("edit executeDo "+contact.getName() + "..." + contact.getEmail());
+		ContactService service = ContactService.getInstance();
 		service.edit(contact);
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.setAttribute("contactList", service.getContactList());
 		return SUCCESS;
 	}
 

@@ -11,8 +11,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpServletRequest;
 
-@WebFilter(urlPatterns = { "/*" }, initParams = {
-		@WebInitParam(name = "test-param", value = "Initialization Paramter") })
+//@WebFilter(urlPatterns = { "/*" }, initParams = {
+//		@WebInitParam(name = "test-param", value = "Initialization Paramter") })
 public class LogFilter implements Filter {
 
     public LogFilter() {

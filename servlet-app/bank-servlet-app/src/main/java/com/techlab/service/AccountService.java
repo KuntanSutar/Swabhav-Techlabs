@@ -15,12 +15,12 @@ public class AccountService {
 		this.repository=accountsRepository;
 	}
 
-	public List<Account> getDepartments() throws SQLException {
-		return repository.getAccounts();
+	public List<Account> getAccounts() throws SQLException {
+		return repository.getAccountList();
 	}
 
-	public void addAccount(Account account) throws SQLException {
-		boolean addDepartment = repository.addAccount(account);
+	public void register(Account account) throws SQLException {
+		repository.register(account);
 	}
 	
 	public Account getAccount(String name) throws SQLException {
@@ -38,4 +38,5 @@ public class AccountService {
 	public List<Transaction> getTransactions(String name) throws SQLException {
 		return repository.getTransactions(name);
 	}
+	
 }

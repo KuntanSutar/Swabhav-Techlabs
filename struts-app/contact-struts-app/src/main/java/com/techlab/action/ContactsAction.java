@@ -2,22 +2,27 @@ package com.techlab.action;
 
 import java.util.List;
 
-import com.opensymphony.xwork2.Action;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.techlab.business.Contact;
 import com.techlab.service.ContactService;
 
 public class ContactsAction extends ActionSupport {
 
-	private ContactService service = new ContactService();
+	private ContactService service = ContactService.getInstance();
 	private List<Contact> contactList;
 	private int totalContacts;
 
 	@Override
 	public String execute() throws Exception {
-		contactList = service.getContactList();
 		System.out.println("Display Action");
+		contactList = service.getContactList();
 		totalContacts=contactList.size();
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.setAttribute("contactList", contactList);
 		return SUCCESS;
 	}
 

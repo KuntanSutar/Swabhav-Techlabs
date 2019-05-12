@@ -22,8 +22,8 @@ public class TransactionController extends HttpServlet {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("views/transaction.html");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("views/transactions.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -36,7 +36,7 @@ public class TransactionController extends HttpServlet {
 			String transactionType = request.getParameter("type");
 			AccountService service;
 			try {
-				service = new AccountService(new AccountsRepository());
+				service = new AccountService(AccountsRepository.getInstance());
 				Account account = service.getAccount(user);
 				if(transactionType.equalsIgnoreCase("Deposite")) {
 					service.deposite(account, amount);
@@ -47,7 +47,7 @@ public class TransactionController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else {
-			request.getRequestDispatcher("views/login.html").forward(request, response);
+			request.getRequestDispatcher("views/login.jsp").forward(request, response);
 		}
 	}
 
