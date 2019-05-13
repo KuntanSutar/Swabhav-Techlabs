@@ -13,9 +13,6 @@ import com.techlab.repository.AccountsRepository;
 public class RegisterAction extends ActionSupport {
 
 	private Account account = new Account();
-	private String name;
-	private int balance;
-	private String password;
 	private static boolean firstTime;
 	
 	static {
@@ -29,7 +26,6 @@ public class RegisterAction extends ActionSupport {
 		this.account = account;
 	}
 	
-	@Override
 	public String execute() throws Exception {
 		System.out.println("register execute called");
 		System.out.println();
@@ -50,25 +46,18 @@ public class RegisterAction extends ActionSupport {
 	}
 	
 	public void validate() {
-		System.out.println("validating " + name + " " + balance + " "+password);
 		System.out.println("validating " + account.getName() + " " + account.getBalance() + " "+account.getPassword());
 		if (firstTime == false) {
 			System.out.println("validate called");
-			if (name == null) {
-				if (account.getName().equals("")) {
-					addFieldError("account.name", "Name is required");
-				}
+			if (("").equals(account.getName()) | account.getName()==null) {
+				addFieldError("account.name", "Name is required");
 			}
-			if (balance == 0) {
-				if (account.getBalance()==0) {
-					addFieldError("account.balance", "Balance is required");
-				}
+			if (account.getBalance()==0) {
+				addFieldError("account.balance", "Balance is required");
 			}
-			if (password==null) {
-				if (account.getPassword().equals("")) {
-					addFieldError("account.password", "Password is required");
-				}
-			}
+			if (("").equals(account.getPassword()) | account.getPassword()==null) {
+				addFieldError("account.password", "Password is required");
+			}	
 		}
 		firstTime = false;
 	}

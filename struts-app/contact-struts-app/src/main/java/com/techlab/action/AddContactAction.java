@@ -13,10 +13,12 @@ import com.techlab.service.ContactService;
 public class AddContactAction extends ActionSupport {
 
 	private Contact contact = new Contact();
-	private String name;
-	private String email;
 	private static boolean firstTime;
 	private int totalContacts;
+	
+	static {
+		firstTime = true;
+	}
 	
 	public int getTotalContacts() {
 		return totalContacts;
@@ -24,10 +26,6 @@ public class AddContactAction extends ActionSupport {
 
 	public void setTotalContacts(int totalContacts) {
 		this.totalContacts = totalContacts;
-	}
-
-	static {
-		firstTime = true;
 	}
 
 	public Contact getContact() {
@@ -63,21 +61,14 @@ public class AddContactAction extends ActionSupport {
 	}
 
 	public void validate() {
-		System.out.println("validating " + name + " " + email);
 		System.out.println("validating " + contact.getName() + " " + contact.getEmail());
 		if (firstTime == false) {
-//			System.out.println(
-//					"in validate " + name.hashCode() + " " + name.length() + " " + email.hashCode() + " " + email.length());
 			System.out.println("validate called");
-			if (name == null) {
-				if (contact.getName().equals("")) {
-					addFieldError("contact.name", "Name is required");
-				}
+			if (("").equals(contact.getName())) {
+				addFieldError("contact.name", "Name is required");
 			}
-			if (email == null) {
-				if (contact.getEmail().equals("")) {
-					addFieldError("contact.email", "Email is required");
-				}
+			if (("").equals(contact.getEmail())) {
+				addFieldError("contact.email", "Email is required");
 			}
 		}
 		firstTime = false;

@@ -25,5 +25,15 @@
     		<result name="input">views/transactions.jsp</result>
     	</action>
     	
+    	<action name="login" class="com.techlab.action.LoginAction" method="execute">
+    		<result name="success">views/login.jsp</result>
+    		<result name="input">views/login.jsp</result>
+    	</action>
+    	
+    	<action name="login.do" class="com.techlab.action.LoginAction" method="executeDo">
+    		<result name="success">views/accounts.jsp</result>
+    		<result name="login">views/login.jsp</result>
+    	</action>
+    	
     </package>
 </struts>

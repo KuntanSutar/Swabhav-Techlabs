@@ -18,7 +18,7 @@
 		<%
 			ArrayList contactList = (ArrayList) request.getAttribute("contactList");
 			out.print("<table class='table-condensed'>");
-			if(contactList!=null) {
+			if(contactList.size()!=0) {
 				out.print("<tr><th>Name</th><th>Email</th><th>Edit</th><th>Delete</th></tr>");
 				for(Object contact:contactList) {
 					Contact cntct = (Contact)contact; 

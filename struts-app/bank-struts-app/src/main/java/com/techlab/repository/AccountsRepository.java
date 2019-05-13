@@ -80,10 +80,10 @@ public class AccountsRepository {
 		Statement statement = connection.createStatement();
 		ResultSet resultSet = statement.executeQuery("select * from account");
 		while (resultSet.next()) {
-			String username = resultSet.getString("username");
+			String name = resultSet.getString("name");
 			int balance = resultSet.getInt("balance");
 			String password = resultSet.getString("password");
-			Account account = new Account(username, balance, password);
+			Account account = new Account(name, balance, password);
 			accountList.add(account);
 		}
 		return accountList;
@@ -93,7 +93,7 @@ public class AccountsRepository {
 
 		if(account!=null) {
 			connection.setAutoCommit(false);
-			PreparedStatement statement1 = connection.prepareStatement("update account set balance=? where username=?");
+			PreparedStatement statement1 = connection.prepareStatement("update account set balance=? where name=?");
 			statement1.setInt(1, account.getBalance()+amount);
 			statement1.setString(2, account.getName());
 			Date date = new Date();  
@@ -119,7 +119,7 @@ public class AccountsRepository {
 
 		if(account!=null) {
 			connection.setAutoCommit(false);
-			PreparedStatement statement1 = connection.prepareStatement("update account set balance=? where username=?");
+			PreparedStatement statement1 = connection.prepareStatement("update account set balance=? where name=?");
 			statement1.setInt(1, account.getBalance()-amount);
 			statement1.setString(2, account.getName());
 			Date date = new Date();  
@@ -142,7 +142,7 @@ public class AccountsRepository {
 	}
 	
 	public Account getAccount(String name) throws SQLException {
-		PreparedStatement statement = connection.prepareStatement("select * from account where username=?");
+		PreparedStatement statement = connection.prepareStatement("select * from account where name=?");
 		statement.setString(1, name);
 		ResultSet resultSet = statement.executeQuery();
 		System.out.println(resultSet);

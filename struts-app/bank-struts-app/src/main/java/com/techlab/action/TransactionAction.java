@@ -7,16 +7,23 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.techlab.business.Account;
 import com.techlab.business.Transaction;
 import com.techlab.repository.AccountsRepository;
 
 public class TransactionAction extends ActionSupport {
 
 	private Transaction transaction = new Transaction();
-	private String name;
-	private int amount;
-	private String type;
-	private String date;
+	private Account account = new Account();
+	
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
 	private static boolean firstTime;
 
 	static {
@@ -31,39 +38,6 @@ public class TransactionAction extends ActionSupport {
 		this.transaction = transaction;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getAmount() {
-		return amount;
-	}
-
-	public void setAmount(int amount) {
-		this.amount = amount;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
-	@Override
 	public String execute() throws Exception {
 		System.out.println("transaction execute called");
 		System.out.println();
@@ -90,14 +64,13 @@ public class TransactionAction extends ActionSupport {
 	}
 	
 	public void validate() {
-		System.out.println("validating " + amount + " "+type);
 		System.out.println("validating " + transaction.getAmount() + " " + transaction.getType());
 		if (firstTime == false) {
 			System.out.println("validate called");
 			if (transaction.getAmount()==0) {
 				addFieldError("transaction.amount", "Amount is required");
 			}
-			if (type==null) {
+			if (("").equals(transaction.getType()) | transaction.getType()==null) {
 				addFieldError("transaction.type", "Type is required");
 			}
 		}

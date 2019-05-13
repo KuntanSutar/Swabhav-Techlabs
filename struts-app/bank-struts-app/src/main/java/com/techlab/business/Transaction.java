@@ -12,7 +12,6 @@ public class Transaction {
 	}
 
 	public Transaction(String name, int amount, String type, String date) {
-		super();
 		this.name = name;
 		this.amount = amount;
 		this.type = type;
