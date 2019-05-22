@@ -38,8 +38,8 @@ public class AddContactAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
-		// contact.setName("Kuntan Sutar");
-		// contact.setEmail("sutarkuntan@gmail.com");
+		// student.setName("Kuntan Sutar");
+		// student.setEmail("sutarkuntan@gmail.com");
 		System.out.println("add execute called");
 		System.out.println();
 		return SUCCESS;
@@ -61,9 +61,9 @@ public class AddContactAction extends ActionSupport {
 	}
 
 	public void validate() {
-		System.out.println("validating " + contact.getName() + " " + contact.getEmail());
+		System.out.println("add validating " + contact.getName() + " " + contact.getEmail());
 		if (firstTime == false) {
-			System.out.println("validate called");
+			System.out.println("add validate called");
 			if (("").equals(contact.getName())) {
 				addFieldError("contact.name", "Name is required");
 			}

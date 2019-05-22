@@ -12,7 +12,7 @@
 		Name : <input type="text" name="name" value="${requestScope.name}" placeholder="Enter Name"> <br>
 		CGPA : <input type="text" name="cgpa" value="${requestScope.cgpa}" placeholder="Enter CGPA"> <br>
 		Roll Number : <input type="text" name="rollNo" value="${requestScope.rollNo}" placeholder="Enter Roll Number" readonly="readonly"> <br>
-		<input type="submit" value="Update Student"> <br>
+		<input type="submit" value="Edit"> <br>
 	</form>
 	
 </body>

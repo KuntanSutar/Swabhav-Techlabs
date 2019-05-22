@@ -1,4 +1,4 @@
-package com.techlab.student;
+package com.techlab.controller;
 
 import java.io.IOException;
 
@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.techlab.business.Student;
+import com.techlab.service.StudentService;
 
 @WebServlet("/add")
 public class AddStudentsController extends HttpServlet {
@@ -38,8 +41,8 @@ public class AddStudentsController extends HttpServlet {
 		System.out.println(name+"..."+cgpa+"..."+rollNo);
 		
 		if(!name.equals("") && !cgpa.equals("") && !rollNo.equals("")) {
-			StudentsService studentsService = new StudentsService();
-			studentsService.addStudentDetails(new Student(name, cgpa, rollNo));
+			StudentService studentsService = StudentService.getInstance();
+			studentsService.add(new Student(name, cgpa, rollNo));
 			response.sendRedirect("students");
 		} else {
 			request.setAttribute("name", name);

@@ -14,11 +14,12 @@
 </style>
 </head>
 <body>
-	<h1>Transaction Controller</h1>
+	<h1>Transaction Action</h1>
 	
 	<s:form action="transaction.do" method="post">
 		<s:textfield key="Amount" name="transaction.amount"></s:textfield>
 		<s:radio key="Type" name="transaction.type" list="{'Deposite','Withdraw'}" ></s:radio>
+		<s:hidden name="account.name"></s:hidden>
 		<s:submit key="submit" value="Submit"></s:submit>
 	</s:form>
 </body>

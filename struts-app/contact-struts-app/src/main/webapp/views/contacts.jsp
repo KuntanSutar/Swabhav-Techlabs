@@ -13,6 +13,7 @@
 <body style="background-color:#e6f9ff;">
 	
 	<div align='center'>
+	
 		<h1><s:property value="totalContacts"/></h1>
 		<h2>Contact Details</h2>
 		<%

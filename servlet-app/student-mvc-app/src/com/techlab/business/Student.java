@@ -1,4 +1,4 @@
-package com.techlab.student;
+package com.techlab.business;
 
 public class Student {
 

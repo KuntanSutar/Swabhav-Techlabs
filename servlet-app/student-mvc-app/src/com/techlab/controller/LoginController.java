@@ -1,4 +1,4 @@
-package com.techlab.student;
+package com.techlab.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;

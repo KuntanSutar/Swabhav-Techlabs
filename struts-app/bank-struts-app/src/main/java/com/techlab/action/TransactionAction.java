@@ -3,6 +3,7 @@ package com.techlab.action;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -16,6 +17,10 @@ public class TransactionAction extends ActionSupport {
 	private Transaction transaction = new Transaction();
 	private Account account = new Account();
 	
+	static {
+		firstTime = true;
+	}
+	
 	public Account getAccount() {
 		return account;
 	}
@@ -26,10 +31,6 @@ public class TransactionAction extends ActionSupport {
 
 	private static boolean firstTime;
 
-	static {
-		firstTime = true;
-	}
-
 	public Transaction getTransaction() {
 		return transaction;
 	}
@@ -39,9 +40,17 @@ public class TransactionAction extends ActionSupport {
 	}
 
 	public String execute() throws Exception {
-		System.out.println("transaction execute called");
-		System.out.println();
-		return SUCCESS;
+		HttpSession session = ServletActionContext.getRequest().getSession(false);
+		if(session==null) {
+			firstTime=true;
+			return LOGIN;
+		} else {
+			System.out.println("transaction execute called");
+			System.out.println("Username Bagh :"+session.getAttribute("username"));
+			System.out.println();
+			account.setName((String) session.getAttribute("username"));
+			return SUCCESS;
+		}
 	}
 
 	public String executeDo() throws SQLException, ClassNotFoundException {
@@ -51,10 +60,10 @@ public class TransactionAction extends ActionSupport {
 				+ "..." + transaction.getDate());
 		AccountsRepository repository = AccountsRepository.getInstance();
 		if(transaction.getType().equalsIgnoreCase("Deposite")) {
-			repository.deposite(repository.getAccount(transaction.getName()), transaction.getAmount());
+			repository.deposite(repository.getAccount(account.getName()), transaction.getAmount());
 		} 
 		if(transaction.getType().equalsIgnoreCase("Withdraw")) {
-			repository.withdraw(repository.getAccount(transaction.getName()), transaction.getAmount());
+			repository.withdraw(repository.getAccount(account.getName()), transaction.getAmount());
 		}
 		System.out.println();
 		firstTime = true;
@@ -64,9 +73,9 @@ public class TransactionAction extends ActionSupport {
 	}
 	
 	public void validate() {
-		System.out.println("validating " + transaction.getAmount() + " " + transaction.getType());
+		System.out.println("trasaction validating " + transaction.getName()+" "+transaction.getAmount() + " " + transaction.getType()+" "+transaction.getDate());
 		if (firstTime == false) {
-			System.out.println("validate called");
+			System.out.println("trasaction validate called");
 			if (transaction.getAmount()==0) {
 				addFieldError("transaction.amount", "Amount is required");
 			}

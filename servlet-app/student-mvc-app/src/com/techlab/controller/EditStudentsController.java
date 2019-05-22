@@ -1,4 +1,4 @@
-package com.techlab.student;
+package com.techlab.controller;
 
 import java.io.IOException;
 
@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.techlab.business.Student;
+import com.techlab.service.StudentService;
 
 @WebServlet("/edit")
 public class EditStudentsController extends HttpServlet {
@@ -26,8 +29,8 @@ public class EditStudentsController extends HttpServlet {
 			requestDispatcher.forward(request, response);
 		} else {
 			String rollNo = request.getParameter("rollNo");
-			StudentsService studentsService = new StudentsService();
-			Student student = studentsService.getStudentByRollNo(rollNo);
+			StudentService studentsService = StudentService.getInstance();
+			Student student = studentsService.getByRollNo(rollNo);
 			System.out.println("Edit Student : "+student.getName());
 			request.setAttribute("name", student.getName());
 			request.setAttribute("cgpa", student.getCgpa());
@@ -45,8 +48,8 @@ public class EditStudentsController extends HttpServlet {
 		System.out.println(name+"..."+cgpa+"..."+rollNo);
 		
 		if(!name.equals("") && !cgpa.equals("") && !rollNo.equals("")) {
-			StudentsService studentsService = new StudentsService();
-			studentsService.updateStudentDetails(new Student(name, cgpa, rollNo));
+			StudentService studentsService = StudentService.getInstance();
+			studentsService.edit(new Student(name, cgpa, rollNo));
 			response.sendRedirect("students");
 		} else {
 			request.setAttribute("name", name);

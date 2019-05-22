@@ -14,9 +14,10 @@
 </style>
 </head>
 <body>
+	<h1>Register Action</h1>
 	
 	<s:form action="register.do" method="post">
-		<s:textfield key="Username" name="account.name"></s:textfield>
+		<s:textfield key="Name" name="account.name"></s:textfield>
 		<s:textfield key="Balance" name="account.balance"></s:textfield>
 		<s:textfield key="Password" name="account.password"></s:textfield>
 		<s:submit key="submit" value="Submit"></s:submit>

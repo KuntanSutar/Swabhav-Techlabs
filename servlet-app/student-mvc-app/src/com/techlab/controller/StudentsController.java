@@ -1,4 +1,4 @@
-package com.techlab.student;
+package com.techlab.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.text.html.HTMLDocument.Iterator;
 
+import com.techlab.business.Student;
+import com.techlab.service.StudentService;
+
 @WebServlet("/students")
 public class StudentsController extends HttpServlet {
 
@@ -20,8 +23,8 @@ public class StudentsController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		StudentsService studentsService = new StudentsService();
-		ArrayList<Student> studentList = studentsService.getStudentBOList();
+		StudentService studentsService = StudentService.getInstance();
+		ArrayList<Student> studentList = studentsService.getStudentList();
 		response.setContentType("text/html");
 		PrintWriter printWriter = response.getWriter();
 		for(Student student:studentList) {

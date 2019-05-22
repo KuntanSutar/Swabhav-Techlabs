@@ -46,17 +46,21 @@ public class RegisterAction extends ActionSupport {
 	}
 	
 	public void validate() {
-		System.out.println("validating " + account.getName() + " " + account.getBalance() + " "+account.getPassword());
+		System.out.println("register validating " + account.getName() + " " + account.getBalance() + " "+account.getPassword());
 		if (firstTime == false) {
-			System.out.println("validate called");
-			if (("").equals(account.getName()) | account.getName()==null) {
+			System.out.println("register validate called");
+			if (("").equals(account.getName())) {
+				System.out.println("In validate "+account.getName());
 				addFieldError("account.name", "Name is required");
 			}
+			System.out.println("He bagh balance "+account.getBalance());
 			if (account.getBalance()==0) {
 				addFieldError("account.balance", "Balance is required");
+				System.out.println("In validate balance bagh "+account.getBalance());
 			}
-			if (("").equals(account.getPassword()) | account.getPassword()==null) {
+			if (("").equals(account.getPassword())) {
 				addFieldError("account.password", "Password is required");
+				System.out.println("In validate "+account.getPassword());
 			}	
 		}
 		firstTime = false;

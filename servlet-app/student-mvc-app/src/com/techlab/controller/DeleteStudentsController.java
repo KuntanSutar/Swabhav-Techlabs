@@ -1,4 +1,4 @@
-package com.techlab.student;
+package com.techlab.controller;
 
 import java.io.IOException;
 
@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.techlab.business.Student;
+import com.techlab.service.StudentService;
 
 @WebServlet("/delete")
 public class DeleteStudentsController extends HttpServlet {
@@ -26,9 +29,9 @@ public class DeleteStudentsController extends HttpServlet {
 			requestDispatcher.forward(request, response);
 		} else {
 			String rollNo = request.getParameter("rollNo");
-			StudentsService studentsService = new StudentsService();
-			Student student = studentsService.getStudentByRollNo(rollNo);
-			studentsService.deleteStudentDetails(student);
+			StudentService studentsService = StudentService.getInstance();
+			Student student = studentsService.getByRollNo(rollNo);
+			studentsService.delete(student);
 			System.out.println("Deleted Student : "+student.getName());
 			response.sendRedirect("students");
 		}
