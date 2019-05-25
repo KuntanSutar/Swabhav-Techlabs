@@ -3,6 +3,7 @@ package com.techlab.action;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -29,7 +30,12 @@ public class RegisterAction extends ActionSupport {
 	public String execute() throws Exception {
 		System.out.println("register execute called");
 		System.out.println();
-		return SUCCESS;
+		HttpSession session = ServletActionContext.getRequest().getSession(false);
+		if(session==null) {
+			return LOGIN;
+		} else {
+			return SUCCESS;
+		}
 	}
 	
 	public String executeDo() throws SQLException, ClassNotFoundException {
@@ -46,21 +52,17 @@ public class RegisterAction extends ActionSupport {
 	}
 	
 	public void validate() {
-		System.out.println("register validating " + account.getName() + " " + account.getBalance() + " "+account.getPassword());
+		System.out.println("validating " + account.getName() + " " + account.getBalance() + " "+account.getPassword());
 		if (firstTime == false) {
-			System.out.println("register validate called");
-			if (("").equals(account.getName())) {
-				System.out.println("In validate "+account.getName());
+			System.out.println("validate called");
+			if (("").equals(account.getName()) | account.getName()==null) {
 				addFieldError("account.name", "Name is required");
 			}
-			System.out.println("He bagh balance "+account.getBalance());
 			if (account.getBalance()==0) {
 				addFieldError("account.balance", "Balance is required");
-				System.out.println("In validate balance bagh "+account.getBalance());
 			}
-			if (("").equals(account.getPassword())) {
+			if (("").equals(account.getPassword()) | account.getPassword()==null) {
 				addFieldError("account.password", "Password is required");
-				System.out.println("In validate "+account.getPassword());
 			}	
 		}
 		firstTime = false;

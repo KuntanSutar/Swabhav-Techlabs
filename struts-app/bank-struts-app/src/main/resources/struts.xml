@@ -8,6 +8,7 @@
     	<action name="register" class="com.techlab.action.RegisterAction" method="execute">
     		<result name="success">views/register.jsp</result>
     		<result name="input">views/register.jsp</result>
+    		<result name="login">views/login.jsp</result>
     	</action>
     	
     	<action name="register.do" class="com.techlab.action.RegisterAction" method="executeDo">
@@ -16,14 +17,13 @@
     	</action>
     	
     	<action name="transaction" class="com.techlab.action.TransactionAction" method="execute">
-    		<result name="success">views/transaction.jsp</result>
-    		<result name="input">views/transaction.jsp</result>
-    		<result name="login">views/login.jsp</result>
+    		<result name="success">views/transactions.jsp</result>
+    		<result name="input">views/transactions.jsp</result>
     	</action>
     	
     	<action name="transaction.do" class="com.techlab.action.TransactionAction" method="executeDo">
     		<result name="success">index.html</result>
-    		<result name="input">views/transaction.jsp</result>
+    		<result name="input">views/transactions.jsp</result>
     	</action>
     	
     	<action name="login" class="com.techlab.action.LoginAction" method="execute">
@@ -32,8 +32,8 @@
     	</action>
     	
     	<action name="login.do" class="com.techlab.action.LoginAction" method="executeDo">
-    		<result name="success">views/index.html</result>
-    		<result name="input">views/index.html</result>
+    		<result name="success">views/accounts.jsp</result>
+    		<result name="login">views/login.jsp</result>
     	</action>
     	
     </package>

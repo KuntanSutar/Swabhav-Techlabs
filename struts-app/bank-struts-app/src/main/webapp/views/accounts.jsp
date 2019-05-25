@@ -16,7 +16,7 @@
 		<h1>Account Details</h1>
 		<%
 			ArrayList<Account> accountList = (ArrayList) request.getAttribute("accountList");
-			if(accountList.size()!=0) {
+			if(accountList!=null) {
 				out.print("<table class='table-condensed'>");
 				out.print("<tr><th>Username</th><th>Balance</th><th>Password</th></tr>");
 				for (Account account : accountList) {

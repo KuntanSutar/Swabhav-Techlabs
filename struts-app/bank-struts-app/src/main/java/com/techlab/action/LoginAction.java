@@ -3,11 +3,9 @@ package com.techlab.action;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.techlab.business.Login;
 import com.techlab.repository.AccountsRepository;
@@ -44,19 +42,17 @@ public class LoginAction extends ActionSupport {
 		if(login.getUsername().equals(login.getPassword())) {
 			HttpServletRequest request = ServletActionContext.getRequest();
 			request.setAttribute("accountList", repository.getAccountList());
-			HttpSession session = request.getSession(true);
-			session.setAttribute("username", login.getUsername());
-			session.setAttribute("password", login.getPassword());
 			firstTime = true;
 			return SUCCESS;
-		} 
-		return INPUT;
+		} else {
+			return LOGIN;
+		}
 	}
 	
 	public void validate() {
-		System.out.println("login validating " + login.getUsername() + " "+login.getPassword());
+		System.out.println("validating " + login.getUsername() + " "+login.getPassword());
 		if (firstTime == false) {
-			System.out.println("login validate called");
+			System.out.println("validate called");
 			if (login.getUsername() == null) {
 				if (("").equals(login.getUsername())) {
 					addFieldError("login.username", "Username is required");

@@ -1,7 +1,5 @@
 package com.techlab.action;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
@@ -15,12 +13,6 @@ public class EditContactAction extends ActionSupport {
 	private Contact contact = new Contact();
 	private String name;
 	private String email;
-	private static boolean firstTime;
-	private int totalContacts;
-	
-	static {
-		firstTime = true;
-	}
 	
 	public Contact getContact() {
 		return contact;
@@ -30,14 +22,6 @@ public class EditContactAction extends ActionSupport {
 		this.contact = contact;
 	}
 
-	public int getTotalContacts() {
-		return totalContacts;
-	}
-
-	public void setTotalContacts(int totalContacts) {
-		this.totalContacts = totalContacts;
-	}
-	
 	public String getName() {
 		return name;
 	}
@@ -62,6 +46,8 @@ public class EditContactAction extends ActionSupport {
 		System.out.println("edit execute "+name+" "+email);
 		contact.setName(name);
 		contact.setEmail(email);
+//		name=contact.getName();
+//		email=contact.getEmail();
 		return SUCCESS;
 	}
 	
@@ -71,22 +57,9 @@ public class EditContactAction extends ActionSupport {
 		System.out.println("edit executeDo "+contact.getName() + "..." + contact.getEmail());
 		ContactService service = ContactService.getInstance();
 		service.edit(contact);
-		List<Contact> contactList=service.getContactList();
 		HttpServletRequest request = ServletActionContext.getRequest();
-		request.setAttribute("contactList", contactList);
-		totalContacts=contactList.size();
+		request.setAttribute("contactList", service.getContactList());
 		return SUCCESS;
-	}
-	
-	public void validate() {
-		System.out.println("edit validating " + contact.getName() + " " + contact.getEmail());
-		if (firstTime == false) {
-			System.out.println("edit validate called");
-			if (("").equals(contact.getEmail())) {
-				addFieldError("contact.email", "Email is required");
-			}
-		}
-		firstTime = false;
 	}
 
 }

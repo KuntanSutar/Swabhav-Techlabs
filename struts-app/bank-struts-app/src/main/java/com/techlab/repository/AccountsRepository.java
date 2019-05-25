@@ -15,7 +15,7 @@ import com.techlab.business.*;
 
 public class AccountsRepository {
 
-	private static List<Account> accountList;
+	private List<Account> accountList;
 	private Connection connection;
 
 	private AccountsRepository() throws SQLException, ClassNotFoundException {
@@ -79,6 +79,7 @@ public class AccountsRepository {
 
 		Statement statement = connection.createStatement();
 		ResultSet resultSet = statement.executeQuery("select * from account");
+		accountList.clear();
 		while (resultSet.next()) {
 			String name = resultSet.getString("name");
 			int balance = resultSet.getInt("balance");

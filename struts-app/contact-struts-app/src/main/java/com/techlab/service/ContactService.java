@@ -7,7 +7,7 @@ import com.techlab.business.Contact;
 
 public class ContactService {
 
-	private static List<Contact> contactList = new ArrayList<Contact>();
+	private List<Contact> contactList = new ArrayList<Contact>();
 	private static ContactService service;
 	
 	static {
@@ -49,7 +49,7 @@ public class ContactService {
 		contactList.remove(cntct);
 	}
 	
-	public static Contact getByName(String name) {
+	public Contact getByName(String name) {
 //		System.out.println(contactList);
 		System.out.println(name);
 		Contact contact = null;
